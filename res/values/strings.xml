@@ -5,4 +5,30 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
+    <!-- activity_login -->
+    <string name="login_name">Login</string>
+    <string name="login_senha">Senha</string>
+    <string name="login_cadastrese">Cadastre-se</string>
+    <string name="login_esqueceu">Esqueceu a senha?</string>
+    <string name="login_entrar">Entrar</string>
+
+    <!-- activity_cadastro_morador -->
+    <string name="s_morador_nome">Nome completo</string>
+    <string name="s_morador_senha1">Senha</string>
+    <string name="s_morador_senha2">Repetir senha</string>
+    <string name="s_morador_predio">Nome do prédio</string>
+    <string name="s_morador_ap">Apartamento</string>
+    <string name="s_morador_btn_cadastrar">Cadastrar</string>
+
+    <!-- activity_cadastro_predio -->
+    <string name="s_predio_telefone">Telefone</string>
+    <string name="s_predio_email">E-mail</string>
+    <string name="s_predio_estado">Estado</string>
+    <string name="s_predio_cidade">Cidade</string>
+    <string name="s_predio_bairro">Bairro</string>
+    <string name="s_predio_rua">Rua</string>
+    <string name="s_predio_numero">Número</string>
+    <string name="s_predio_cep">CEP</string>
+    
+
 </resources>

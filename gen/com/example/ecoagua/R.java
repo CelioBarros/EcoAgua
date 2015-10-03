@@ -1591,21 +1591,22 @@ containing a value of this type.
         public static final int abc_config_showMenuShortcutsWhenKeyboardPresent=0x7f060003;
     }
     public static final class color {
-        public static final int abc_background_cache_hint_selector_material_dark=0x7f070033;
-        public static final int abc_background_cache_hint_selector_material_light=0x7f070034;
+        public static final int abc_background_cache_hint_selector_material_dark=0x7f070034;
+        public static final int abc_background_cache_hint_selector_material_light=0x7f070035;
         public static final int abc_input_method_navigation_guard=0x7f070003;
-        public static final int abc_primary_text_disable_only_material_dark=0x7f070035;
-        public static final int abc_primary_text_disable_only_material_light=0x7f070036;
-        public static final int abc_primary_text_material_dark=0x7f070037;
-        public static final int abc_primary_text_material_light=0x7f070038;
-        public static final int abc_search_url_text=0x7f070039;
+        public static final int abc_primary_text_disable_only_material_dark=0x7f070036;
+        public static final int abc_primary_text_disable_only_material_light=0x7f070037;
+        public static final int abc_primary_text_material_dark=0x7f070038;
+        public static final int abc_primary_text_material_light=0x7f070039;
+        public static final int abc_search_url_text=0x7f07003a;
         public static final int abc_search_url_text_normal=0x7f070000;
         public static final int abc_search_url_text_pressed=0x7f070002;
         public static final int abc_search_url_text_selected=0x7f070001;
-        public static final int abc_secondary_text_material_dark=0x7f07003a;
-        public static final int abc_secondary_text_material_light=0x7f07003b;
+        public static final int abc_secondary_text_material_dark=0x7f07003b;
+        public static final int abc_secondary_text_material_light=0x7f07003c;
         public static final int accent_material_dark=0x7f07000f;
         public static final int accent_material_light=0x7f07000e;
+        public static final int background=0x7f070033;
         public static final int background_floating_material_dark=0x7f070006;
         public static final int background_floating_material_light=0x7f070007;
         public static final int background_material_dark=0x7f070004;
@@ -1661,8 +1662,8 @@ containing a value of this type.
         public static final int secondary_text_disabled_material_light=0x7f07002b;
         public static final int switch_thumb_disabled_material_dark=0x7f070014;
         public static final int switch_thumb_disabled_material_light=0x7f070015;
-        public static final int switch_thumb_material_dark=0x7f07003c;
-        public static final int switch_thumb_material_light=0x7f07003d;
+        public static final int switch_thumb_material_dark=0x7f07003d;
+        public static final int switch_thumb_material_light=0x7f07003e;
         public static final int switch_thumb_normal_material_dark=0x7f070012;
         public static final int switch_thumb_normal_material_light=0x7f070013;
     }
@@ -1926,11 +1927,18 @@ containing a value of this type.
         public static final int abc_textfield_search_activated_mtrl_alpha=0x7f020038;
         public static final int abc_textfield_search_default_mtrl_alpha=0x7f020039;
         public static final int abc_textfield_search_material=0x7f02003a;
-        public static final int ic_launcher=0x7f02003b;
-        public static final int notification_template_icon_bg=0x7f02003c;
+        public static final int barra=0x7f02003b;
+        public static final int btn_login=0x7f02003c;
+        public static final int ic_launcher=0x7f02003d;
+        public static final int logo=0x7f02003e;
+        public static final int logo2=0x7f02003f;
+        public static final int notification_template_icon_bg=0x7f020041;
+        public static final int opcoes=0x7f020040;
     }
     public static final class id {
-        public static final int action0=0x7f05004f;
+        public static final int ImageView01=0x7f05007b;
+        public static final int ImageView02=0x7f050079;
+        public static final int action0=0x7f05007d;
         public static final int action_bar=0x7f050040;
         public static final int action_bar_activity_content=0x7f05001d;
         public static final int action_bar_container=0x7f05003f;
@@ -1939,21 +1947,24 @@ containing a value of this type.
         public static final int action_bar_subtitle=0x7f050024;
         public static final int action_bar_title=0x7f050023;
         public static final int action_context_bar=0x7f050041;
-        public static final int action_divider=0x7f050053;
+        public static final int action_divider=0x7f050081;
         public static final int action_menu_divider=0x7f05001f;
         public static final int action_menu_presenter=0x7f050020;
         public static final int action_mode_bar=0x7f05003d;
         public static final int action_mode_bar_stub=0x7f05003c;
         public static final int action_mode_close_button=0x7f050025;
-        public static final int action_settings=0x7f05005c;
+        public static final int action_settings=0x7f05008a;
         public static final int activity_chooser_view_content=0x7f050026;
         public static final int alertTitle=0x7f050030;
         public static final int always=0x7f050012;
         public static final int beginning=0x7f050017;
+        public static final int btnEntrar=0x7f05007c;
+        public static final int btn_cadastrar_morador=0x7f05005a;
+        public static final int btn_cadastrar_predio=0x7f050071;
         public static final int buttonPanel=0x7f050036;
-        public static final int cancel_action=0x7f050050;
+        public static final int cancel_action=0x7f05007e;
         public static final int checkbox=0x7f050038;
-        public static final int chronometer=0x7f050056;
+        public static final int chronometer=0x7f050084;
         public static final int collapseActionView=0x7f050014;
         public static final int contentPanel=0x7f050031;
         public static final int custom=0x7f050035;
@@ -1965,7 +1976,7 @@ containing a value of this type.
         public static final int dropdown=0x7f050016;
         public static final int edit_query=0x7f050042;
         public static final int end=0x7f050019;
-        public static final int end_padder=0x7f05005b;
+        public static final int end_padder=0x7f050089;
         public static final int expand_activities_button=0x7f050027;
         public static final int expanded_menu=0x7f050037;
         public static final int home=0x7f05001a;
@@ -1973,23 +1984,48 @@ containing a value of this type.
         public static final int icon=0x7f05002b;
         public static final int ifRoom=0x7f050011;
         public static final int image=0x7f050028;
-        public static final int info=0x7f05005a;
-        public static final int line1=0x7f050054;
-        public static final int line3=0x7f050058;
+        public static final int info=0x7f050088;
+        public static final int line1=0x7f050082;
+        public static final int line3=0x7f050086;
         public static final int listMode=0x7f050002;
         public static final int list_item=0x7f05002a;
-        public static final int media_actions=0x7f050052;
+        public static final int loginLogo=0x7f050072;
+        public static final int login_campo=0x7f050073;
+        public static final int login_campo_senha=0x7f050076;
+        public static final int login_name=0x7f050074;
+        public static final int login_opcoes=0x7f050077;
+        public static final int login_senha=0x7f050075;
+        public static final int login_text_cadastrase=0x7f050078;
+        public static final int login_text_esqueceu=0x7f05007a;
+        public static final int media_actions=0x7f050080;
         public static final int middle=0x7f050018;
+        public static final int morador_ap=0x7f050058;
+        public static final int morador_nome=0x7f050050;
+        public static final int morador_predio=0x7f050056;
+        public static final int morador_senha1=0x7f050052;
+        public static final int morador_senha2=0x7f050054;
         public static final int multiply=0x7f05000e;
         public static final int never=0x7f050010;
         public static final int none=0x7f050004;
         public static final int normal=0x7f050001;
         public static final int parentPanel=0x7f05002d;
+        public static final int predio_bairro=0x7f050069;
+        public static final int predio_cep=0x7f05006f;
+        public static final int predio_cidade=0x7f050067;
+        public static final int predio_email=0x7f050063;
+        public static final int predio_estado=0x7f050065;
+        public static final int predio_nome=0x7f05005b;
+        public static final int predio_numero=0x7f05006d;
+        public static final int predio_rua=0x7f05006b;
+        public static final int predio_senha1=0x7f05005d;
+        public static final int predio_senha2=0x7f05005f;
+        public static final int predio_telefone=0x7f050061;
         public static final int progress_circular=0x7f050021;
         public static final int progress_horizontal=0x7f050022;
         public static final int radio=0x7f05003a;
         public static final int screen=0x7f05000f;
         public static final int scrollView=0x7f050032;
+        public static final int scrollView1=0x7f05004f;
         public static final int search_badge=0x7f050044;
         public static final int search_bar=0x7f050043;
         public static final int search_button=0x7f050045;
@@ -2009,13 +2045,29 @@ containing a value of this type.
         public static final int src_atop=0x7f05000d;
         public static final int src_in=0x7f05000c;
         public static final int src_over=0x7f05000b;
-        public static final int status_bar_latest_event_content=0x7f050051;
+        public static final int status_bar_latest_event_content=0x7f05007f;
         public static final int submit_area=0x7f05004b;
         public static final int tabMode=0x7f050003;
-        public static final int text=0x7f050059;
-        public static final int text2=0x7f050057;
+        public static final int text=0x7f050087;
+        public static final int text2=0x7f050085;
         public static final int textSpacerNoButtons=0x7f050033;
-        public static final int time=0x7f050055;
+        public static final int tf_morador_ap=0x7f050059;
+        public static final int tf_morador_nome=0x7f050051;
+        public static final int tf_morador_predio=0x7f050057;
+        public static final int tf_morador_senha1=0x7f050053;
+        public static final int tf_morador_senha2=0x7f050055;
+        public static final int tf_predio_bairro=0x7f05006a;
+        public static final int tf_predio_cep=0x7f050070;
+        public static final int tf_predio_cidade=0x7f050068;
+        public static final int tf_predio_email=0x7f050064;
+        public static final int tf_predio_estado=0x7f050066;
+        public static final int tf_predio_nome=0x7f05005c;
+        public static final int tf_predio_numero=0x7f05006e;
+        public static final int tf_predio_rua=0x7f05006c;
+        public static final int tf_predio_senha1=0x7f05005e;
+        public static final int tf_predio_senha2=0x7f050060;
+        public static final int tf_predio_telefone=0x7f050062;
+        public static final int time=0x7f050083;
         public static final int title=0x7f05002c;
         public static final int title_template=0x7f05002f;
         public static final int topPanel=0x7f05002e;
@@ -2086,19 +2138,22 @@ containing a value of this type.
         public static final int abc_search_view=0x7f030016;
         public static final int abc_select_dialog_material=0x7f030017;
         public static final int abc_simple_dropdown_hint=0x7f030018;
-        public static final int activity_main=0x7f030019;
-        public static final int notification_media_action=0x7f03001a;
-        public static final int notification_media_cancel_action=0x7f03001b;
-        public static final int notification_template_big_media=0x7f03001c;
-        public static final int notification_template_big_media_narrow=0x7f03001d;
-        public static final int notification_template_lines=0x7f03001e;
-        public static final int notification_template_media=0x7f03001f;
-        public static final int notification_template_part_chronometer=0x7f030020;
-        public static final int notification_template_part_time=0x7f030021;
-        public static final int select_dialog_item_material=0x7f030022;
-        public static final int select_dialog_multichoice_material=0x7f030023;
-        public static final int select_dialog_singlechoice_material=0x7f030024;
-        public static final int support_simple_spinner_dropdown_item=0x7f030025;
+        public static final int activity_cadastro_morador=0x7f030019;
+        public static final int activity_cadastro_predio=0x7f03001a;
+        public static final int activity_login=0x7f03001b;
+        public static final int activity_main=0x7f03001c;
+        public static final int notification_media_action=0x7f03001d;
+        public static final int notification_media_cancel_action=0x7f03001e;
+        public static final int notification_template_big_media=0x7f03001f;
+        public static final int notification_template_big_media_narrow=0x7f030020;
+        public static final int notification_template_lines=0x7f030021;
+        public static final int notification_template_media=0x7f030022;
+        public static final int notification_template_part_chronometer=0x7f030023;
+        public static final int notification_template_part_time=0x7f030024;
+        public static final int select_dialog_item_material=0x7f030025;
+        public static final int select_dialog_multichoice_material=0x7f030026;
+        public static final int select_dialog_singlechoice_material=0x7f030027;
+        public static final int support_simple_spinner_dropdown_item=0x7f030028;
     }
     public static final class menu {
         public static final int main=0x7f0c0000;
@@ -2166,6 +2221,31 @@ containing a value of this type.
         public static final int action_settings=0x7f0a0014;
         public static final int app_name=0x7f0a0012;
         public static final int hello_world=0x7f0a0013;
+        public static final int login_cadastrese=0x7f0a0017;
+        public static final int login_entrar=0x7f0a0019;
+        public static final int login_esqueceu=0x7f0a0018;
+        /**  activity_login 
+         */
+        public static final int login_name=0x7f0a0015;
+        public static final int login_senha=0x7f0a0016;
+        public static final int s_morador_ap=0x7f0a001e;
+        public static final int s_morador_btn_cadastrar=0x7f0a001f;
+        /**  activity_cadastro_morador 
+         */
+        public static final int s_morador_nome=0x7f0a001a;
+        public static final int s_morador_predio=0x7f0a001d;
+        public static final int s_morador_senha1=0x7f0a001b;
+        public static final int s_morador_senha2=0x7f0a001c;
+        public static final int s_predio_bairro=0x7f0a0024;
+        public static final int s_predio_cep=0x7f0a0027;
+        public static final int s_predio_cidade=0x7f0a0023;
+        public static final int s_predio_email=0x7f0a0021;
+        public static final int s_predio_estado=0x7f0a0022;
+        public static final int s_predio_numero=0x7f0a0026;
+        public static final int s_predio_rua=0x7f0a0025;
+        /**  activity_cadastro_predio 
+         */
+        public static final int s_predio_telefone=0x7f0a0020;
         /**  Text to use when the number in a notification info is too large
          (greater than status_bar_notification_info_maxnum, defined in
          values/config.xml) and must be truncated. May need to be localized
@@ -2593,6 +2673,7 @@ containing a value of this type.
          */
         public static final int Widget_AppCompat_Toolbar=0x7f0b0042;
         public static final int Widget_AppCompat_Toolbar_Button_Navigation=0x7f0b0043;
+        public static final int eco=0x7f0b0126;
     }
     public static final class styleable {
         /**  ============================================ 
