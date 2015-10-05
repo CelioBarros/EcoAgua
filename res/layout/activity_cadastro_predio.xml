@@ -167,7 +167,7 @@
                 android:layout_width="270dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="numberDecimal" />
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/predio_cep"
@@ -182,7 +182,7 @@
                 android:layout_width="270dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="numberDecimal" 
+                android:inputType="number" 
                 />
 
             <Button

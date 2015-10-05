@@ -27,11 +27,11 @@
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/tf_morador_nome"
+            android:id="@+id/et_login"
             android:layout_width="270dp"
             android:layout_height="wrap_content"
-            android:ems="10" 
-            android:inputType="text">
+            android:ems="10"
+            android:inputType="text" >
 
             <requestFocus />
         </EditText>
@@ -45,7 +45,7 @@
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/login_campo_senha"
+            android:id="@+id/et_senha"
             android:layout_width="270dp"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -59,7 +59,7 @@
         android:gravity="center">
 
         <TextView
-            android:id="@+id/login_text_cadastrase"
+            android:id="@+id/login_text_cadastrarse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/login_cadastrese"
@@ -88,7 +88,7 @@
         android:src="@drawable/barra" />
 
     <Button
-        android:id="@+id/btnEntrar"
+        android:id="@+id/btn_entrar"
         android:layout_width="100dp"
         android:layout_height="40dp"
         android:layout_gravity="center"
