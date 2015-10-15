@@ -12,6 +12,7 @@ public final class R {
     }
     public static final class color {
         public static final int background=0x7f040000;
+        public static final int subBackground=0x7f040001;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -26,11 +27,17 @@ public final class R {
     }
     public static final class drawable {
         public static final int barra=0x7f020000;
-        public static final int btn_login=0x7f020001;
-        public static final int ic_launcher=0x7f020002;
-        public static final int logo=0x7f020003;
-        public static final int logo2=0x7f020004;
-        public static final int opcoes=0x7f020005;
+        public static final int botao=0x7f020001;
+        public static final int btn_login=0x7f020002;
+        public static final int foto=0x7f020003;
+        public static final int grafico=0x7f020004;
+        public static final int home=0x7f020005;
+        public static final int ic_launcher=0x7f020006;
+        public static final int logo=0x7f020007;
+        public static final int logo2=0x7f020008;
+        public static final int notificacoes=0x7f020009;
+        public static final int opcoes=0x7f02000a;
+        public static final int ranking=0x7f02000b;
     }
     public static final class id {
         public static final int ImageView01=0x7f09002d;
@@ -38,8 +45,12 @@ public final class R {
         public static final int btn_cadastrar_morador=0x7f09000b;
         public static final int btn_cadastrar_predio=0x7f090022;
         public static final int btn_entrar=0x7f09002e;
+        public static final int button1=0x7f090035;
+        public static final int estatisticas=0x7f090031;
         public static final int et_login=0x7f090026;
         public static final int et_senha=0x7f090028;
+        public static final int foto_predio=0x7f090033;
+        public static final int home=0x7f09002f;
         public static final int loginLogo=0x7f090023;
         public static final int login_campo=0x7f090024;
         public static final int login_name=0x7f090025;
@@ -52,6 +63,7 @@ public final class R {
         public static final int morador_predio=0x7f090007;
         public static final int morador_senha1=0x7f090003;
         public static final int morador_senha2=0x7f090005;
+        public static final int notificacoes=0x7f090032;
         public static final int predio_bairro=0x7f09001a;
         public static final int predio_cep=0x7f090020;
         public static final int predio_cidade=0x7f090018;
@@ -63,6 +75,7 @@ public final class R {
         public static final int predio_senha1=0x7f09000e;
         public static final int predio_senha2=0x7f090010;
         public static final int predio_telefone=0x7f090012;
+        public static final int ranking=0x7f090030;
         public static final int scrollView1=0x7f090000;
         public static final int tf_morador_ap=0x7f09000a;
         public static final int tf_morador_nome=0x7f090002;
@@ -80,12 +93,16 @@ public final class R {
         public static final int tf_predio_senha1=0x7f09000f;
         public static final int tf_predio_senha2=0x7f090011;
         public static final int tf_predio_telefone=0x7f090013;
+        public static final int tv_perfil_predio_dados=0x7f090036;
+        public static final int tv_perfil_predio_username=0x7f090034;
     }
     public static final class layout {
         public static final int activity_cadastro_morador=0x7f030000;
         public static final int activity_cadastro_predio=0x7f030001;
         public static final int activity_login=0x7f030002;
         public static final int activity_main=0x7f030003;
+        public static final int activity_menu=0x7f030004;
+        public static final int activity_perfil=0x7f030005;
     }
     public static final class menu {
         public static final int main=0x7f080000;
@@ -109,6 +126,10 @@ public final class R {
         public static final int s_morador_predio=0x7f06000b;
         public static final int s_morador_senha1=0x7f060009;
         public static final int s_morador_senha2=0x7f06000a;
+        public static final int s_perfil_predio_cadastrar=0x7f060017;
+        /**  activity_perfil_predio 
+         */
+        public static final int s_perfil_predio_sair=0x7f060016;
         public static final int s_predio_bairro=0x7f060012;
         public static final int s_predio_cep=0x7f060015;
         public static final int s_predio_cidade=0x7f060011;

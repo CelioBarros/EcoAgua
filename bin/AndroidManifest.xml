@@ -26,6 +26,16 @@
         </activity>
         <activity android:name=".CadastroPredioActivity" >
         </activity>
+        <activity android:name=".EstatisticasActivity" >
+        </activity>
+        <activity android:name=".MenuActivity" >
+        </activity>
+        <activity android:name=".PerfilActivity" >
+        </activity>
+        <activity android:name=".NotificacoesAcitivity" >
+        </activity>
+        <activity android:name=".RankingAcitivity" >
+        </activity>
     </application>
 
 </manifest>

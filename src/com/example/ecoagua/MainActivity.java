@@ -24,6 +24,10 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				String login = etLogin.getText().toString();
 				String senha = etSenha.getText().toString();
+				
+				//mudar depois para activity login
+				Intent intent = new Intent(MainActivity.this, PerfilActivity.class);
+				startActivity(intent);
 			}
 		});
 		
@@ -54,5 +58,8 @@ public class MainActivity extends Activity {
 		cadastrar();
 
 		logar();
+		
+		Intent menu = new Intent(MainActivity.this, MenuActivity.class);
+		startActivity(menu);
 	}
 }
