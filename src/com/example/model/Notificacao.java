@@ -23,7 +23,7 @@ public class Notificacao implements Comparable<Notificacao>{
 	}
 
 	public void setPredio(Predio predio) {
-		if (texto == null ) {
+		if (predio == null ) {
 			throw new IllegalArgumentException("Predio é obrigatório.");
 		
 	}

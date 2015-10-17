@@ -83,6 +83,7 @@ public class PerfilActivity extends Activity {
 				// chama controller pra cadastrar a medicao
 				String medicao = etMedicao.getText().toString();
 				//Float medicaoF = Float.parseFloat(medicao);
+				//Medicao medicao = new Medicao(medicaoF, predio);
 			}
 		});
 
