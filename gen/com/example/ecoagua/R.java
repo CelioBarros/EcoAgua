@@ -12,6 +12,7 @@ public final class R {
     }
     public static final class color {
         public static final int background=0x7f040000;
+        public static final int branco=0x7f040002;
         public static final int subBackground=0x7f040001;
     }
     public static final class dimen {
@@ -40,25 +41,25 @@ public final class R {
         public static final int ranking=0x7f02000b;
     }
     public static final class id {
-        public static final int ImageView01=0x7f09002d;
-        public static final int ImageView02=0x7f09002b;
+        public static final int ImageView01=0x7f090033;
+        public static final int ImageView02=0x7f090031;
         public static final int btn_cadastrar_morador=0x7f09000b;
-        public static final int btn_cadastrar_morador_perfil=0x7f090033;
+        public static final int btn_cadastrar_morador_perfil=0x7f090039;
         public static final int btn_cadastrar_predio=0x7f090022;
-        public static final int btn_entrar=0x7f09002e;
-        public static final int btn_sair=0x7f090031;
-        public static final int et_login=0x7f090026;
-        public static final int et_senha=0x7f090028;
-        public static final int foto_predio=0x7f090030;
-        public static final int loginLogo=0x7f090023;
-        public static final int login_campo=0x7f090024;
-        public static final int login_name=0x7f090025;
-        public static final int login_opcoes=0x7f090029;
-        public static final int login_senha=0x7f090027;
-        public static final int login_text_cadastrarse=0x7f09002a;
-        public static final int login_text_esqueceu=0x7f09002c;
-        public static final int lvExpNotificacao=0x7f09002f;
-        public static final int lvExpRanking=0x7f090038;
+        public static final int btn_entrar=0x7f090034;
+        public static final int btn_sair=0x7f090037;
+        public static final int et_login=0x7f09002c;
+        public static final int et_senha=0x7f09002e;
+        public static final int foto_predio=0x7f090036;
+        public static final int loginLogo=0x7f090029;
+        public static final int login_campo=0x7f09002a;
+        public static final int login_name=0x7f09002b;
+        public static final int login_opcoes=0x7f09002f;
+        public static final int login_senha=0x7f09002d;
+        public static final int login_text_cadastrarse=0x7f090030;
+        public static final int login_text_esqueceu=0x7f090032;
+        public static final int lvExpNotificacao=0x7f090035;
+        public static final int lvExpRanking=0x7f09003e;
         public static final int morador_ap=0x7f090009;
         public static final int morador_nome=0x7f090001;
         public static final int morador_predio=0x7f090007;
@@ -92,22 +93,30 @@ public final class R {
         public static final int tf_predio_senha1=0x7f09000f;
         public static final int tf_predio_senha2=0x7f090011;
         public static final int tf_predio_telefone=0x7f090013;
-        public static final int tv_gastos=0x7f090037;
-        public static final int tv_nome=0x7f090036;
-        public static final int tv_perfil_predio_username=0x7f090032;
-        public static final int tv_posicao=0x7f090035;
-        public static final int tv_ranking=0x7f090034;
+        public static final int tv_gastos=0x7f09003d;
+        public static final int tv_list_gastos=0x7f090028;
+        public static final int tv_list_nome=0x7f090027;
+        public static final int tv_list_posicao=0x7f090026;
+        public static final int tv_nome=0x7f09003c;
+        public static final int tv_notificacoes_data=0x7f090025;
+        public static final int tv_notificacoes_nome=0x7f090023;
+        public static final int tv_notificacoes_texto=0x7f090024;
+        public static final int tv_perfil_predio_username=0x7f090038;
+        public static final int tv_posicao=0x7f09003b;
+        public static final int tv_ranking=0x7f09003a;
     }
     public static final class layout {
         public static final int activity_cadastro_morador=0x7f030000;
         public static final int activity_cadastro_predio=0x7f030001;
         public static final int activity_estatisticas=0x7f030002;
-        public static final int activity_login=0x7f030003;
-        public static final int activity_main=0x7f030004;
-        public static final int activity_menu=0x7f030005;
-        public static final int activity_notificacoes=0x7f030006;
-        public static final int activity_perfil=0x7f030007;
-        public static final int activity_ranking=0x7f030008;
+        public static final int activity_list_notificacoes=0x7f030003;
+        public static final int activity_list_ranking=0x7f030004;
+        public static final int activity_login=0x7f030005;
+        public static final int activity_main=0x7f030006;
+        public static final int activity_menu=0x7f030007;
+        public static final int activity_notificacoes=0x7f030008;
+        public static final int activity_perfil=0x7f030009;
+        public static final int activity_ranking=0x7f03000a;
     }
     public static final class menu {
         public static final int main=0x7f080000;
