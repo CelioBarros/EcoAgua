@@ -39,5 +39,8 @@
     <string name="s_ranking_posicao">Posição</string>
     <string name="s_ranking_nome">Nome</string>
     <string name="s_ranking_gastos">Gastos (L)</string>
-
+	
+    <!-- activity_notificacao -->
+    <string name="s_notificacao">Notificacões</string>
+    
 </resources>

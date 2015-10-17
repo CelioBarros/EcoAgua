@@ -20,7 +20,7 @@
             android:text="@string/s_ranking"
             android:textSize="20sp" />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/branco"
@@ -30,15 +30,16 @@
                 android:id="@+id/tv_posicao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="20dp"
                 android:text="@string/s_ranking_posicao"
                 android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tv_nome"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
+                android:gravity="center"
                 android:text="@string/s_ranking_nome"
                 android:textSize="18sp" />
 
@@ -46,9 +47,11 @@
                 android:id="@+id/tv_gastos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
                 android:text="@string/s_ranking_gastos"
                 android:textSize="18sp" />
-        </LinearLayout>
+        </RelativeLayout>
 
         <ImageView
             android:id="@+id/ImageView01"
@@ -66,9 +69,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" >
             </ListView>
-
         </RelativeLayout>
-
     </LinearLayout>
 
 </LinearLayout>

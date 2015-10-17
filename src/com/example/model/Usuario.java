@@ -49,6 +49,8 @@ public class Usuario {
 			} else if (nome.length() > TAMANHO_MAXIMO_NOME) {
 				throw new IllegalArgumentException("Tamanho do nome excede o limite de " + TAMANHO_MAXIMO_NOME + " caracteres.");
 			}
+		}else{
+			throw new IllegalArgumentException("Nome é obrigatório.");
 		}
 		this.apartamento = nome;
 	}

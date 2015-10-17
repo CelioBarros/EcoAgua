@@ -3,13 +3,15 @@ package com.example.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Predio extends Usuario{
+public class Predio  extends Usuario implements Comparable<Predio>{
 	//gastos com agua do mes atual em L
 	private float gastosMesAtual;
 	//colocacao no ranking
 	private int colocacao;
 	//lista de moradores
 	private List<Morador> moradores;
+	//lista de notificacoes
+	private List<Notificacao> notificacoes;
 
 	/**
 	 * Construtor de predio
@@ -84,5 +86,24 @@ public class Predio extends Usuario{
 
 	public void setMoradores(List<Morador> moradores) {
 		this.moradores = moradores;
+	}
+
+	public List<Notificacao> getNotificacoes() {
+		return notificacoes;
+	}
+
+	public void setNotificacoes(List<Notificacao> notificacoes) {
+		this.notificacoes = notificacoes;
+	}
+
+	@Override
+	public int compareTo(Predio another) {
+		if (this.getColocacao() < another.getColocacao()) {
+            return -1;
+        }
+		else if (this.getColocacao() > another.getColocacao()) {
+            return 1;
+        }
+		return 0;
 	}
 }
