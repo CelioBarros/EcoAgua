@@ -1,65 +1,53 @@
 package com.example.ecoagua;
 
-import android.app.Activity;
+import android.app.TabActivity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.TabHost;
+import android.widget.TabHost.OnTabChangeListener;
 
-public class MainActivity extends Activity {
-	private TextView etCadastrar;
-	private Button btnEntrar;
-	private EditText etLogin;
-	private EditText etSenha;
-	
-	private void logar() {
-		btnEntrar.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				String login = etLogin.getText().toString();
-				String senha = etSenha.getText().toString();
-				
-				//mudar depois para activity login
-				Intent intent = new Intent(MainActivity.this, PerfilActivity.class);
-				startActivity(intent);
-			}
-		});
-		
-	}
-
-	private void cadastrar() {
-		etCadastrar.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View arg0) {
-				Intent intent = new Intent(MainActivity.this, CadastroPredioActivity.class);
-				startActivity(intent);
-			}
-		});
-		
-	}
+@SuppressWarnings("deprecation")
+public class MainActivity extends TabActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_login);
-
-		etCadastrar = (TextView) findViewById(R.id.login_text_cadastrarse);
-		btnEntrar = (Button) findViewById(R.id.btn_entrar);
-		etLogin = (EditText) findViewById(R.id.et_login);
-		etSenha = (EditText) findViewById(R.id.et_senha);
+		setContentView(R.layout.activity_menu);
 		
-		cadastrar();
-
-		logar();
 		
-		Intent menu = new Intent(MainActivity.this, MenuActivity.class);
-		startActivity(menu);
+		setTabHost();
+	}
+
+	private void setTabHost() {
+		final TabHost mTabHost = (TabHost) findViewById(android.R.id.tabhost);
+
+	    mTabHost.addTab(mTabHost.newTabSpec("home").setIndicator("", getResources().getDrawable(R.drawable.home)).setContent(new Intent(this  ,PerfilActivity.class )));
+	    mTabHost.addTab(mTabHost.newTabSpec("ranking").setIndicator("", getResources().getDrawable(R.drawable.ranking)).setContent(new Intent(this , RankingActivity.class )));
+	    mTabHost.addTab(mTabHost.newTabSpec("estatisticas").setIndicator("", getResources().getDrawable(R.drawable.grafico)).setContent(new Intent(this , EstatisticasActivity.class )));
+	    mTabHost.addTab(mTabHost.newTabSpec("notificacoes").setIndicator("", getResources().getDrawable(R.drawable.notificacoes)).setContent(new Intent(this , NotificacoesActivity.class )));
+	    mTabHost.setCurrentTab(0);
+	    
+	    mTabHost.setOnTabChangedListener(new OnTabChangeListener() {
+
+			@Override
+			public void onTabChanged(String arg0) {
+				setTabColor(mTabHost);
+			}
+		});
+		setTabColor(mTabHost);
+		
+	}
+	
+	private void setTabColor(TabHost tabhost) {
+		for (int i = 0; i < tabhost.getTabWidget().getChildCount(); i++) {
+			tabhost.getTabWidget().getChildAt(i).setBackgroundColor(Color.parseColor("#62b3cc")); //unselected
+		}
+		if(tabhost.getCurrentTab() == 0) {
+			tabhost.getTabWidget().getChildAt(tabhost.getCurrentTab()).setBackgroundColor(Color.parseColor("#b5eef7")); //1st tab selected
+		} else {
+			tabhost.getTabWidget().getChildAt(tabhost.getCurrentTab()).setBackgroundColor(Color.parseColor("#b5eef7")); //2nd tab selected
+		}
 	}
 }
