@@ -43,13 +43,13 @@ public final class R {
         public static final int ImageView01=0x7f09002d;
         public static final int ImageView02=0x7f09002b;
         public static final int btn_cadastrar_morador=0x7f09000b;
-        public static final int btn_cadastrar_morador_perfil=0x7f090032;
+        public static final int btn_cadastrar_morador_perfil=0x7f090033;
         public static final int btn_cadastrar_predio=0x7f090022;
         public static final int btn_entrar=0x7f09002e;
-        public static final int btn_sair=0x7f090030;
+        public static final int btn_sair=0x7f090031;
         public static final int et_login=0x7f090026;
         public static final int et_senha=0x7f090028;
-        public static final int foto_predio=0x7f09002f;
+        public static final int foto_predio=0x7f090030;
         public static final int loginLogo=0x7f090023;
         public static final int login_campo=0x7f090024;
         public static final int login_name=0x7f090025;
@@ -57,6 +57,8 @@ public final class R {
         public static final int login_senha=0x7f090027;
         public static final int login_text_cadastrarse=0x7f09002a;
         public static final int login_text_esqueceu=0x7f09002c;
+        public static final int lvExpNotificacao=0x7f09002f;
+        public static final int lvExpRanking=0x7f090038;
         public static final int morador_ap=0x7f090009;
         public static final int morador_nome=0x7f090001;
         public static final int morador_predio=0x7f090007;
@@ -90,7 +92,11 @@ public final class R {
         public static final int tf_predio_senha1=0x7f09000f;
         public static final int tf_predio_senha2=0x7f090011;
         public static final int tf_predio_telefone=0x7f090013;
-        public static final int tv_perfil_predio_username=0x7f090031;
+        public static final int tv_gastos=0x7f090037;
+        public static final int tv_nome=0x7f090036;
+        public static final int tv_perfil_predio_username=0x7f090032;
+        public static final int tv_posicao=0x7f090035;
+        public static final int tv_ranking=0x7f090034;
     }
     public static final class layout {
         public static final int activity_cadastro_morador=0x7f030000;
@@ -126,7 +132,7 @@ public final class R {
         public static final int s_morador_senha1=0x7f060009;
         public static final int s_morador_senha2=0x7f06000a;
         public static final int s_perfil_predio_cadastrar=0x7f060017;
-        /**  activity_perfil_predio 
+        /**  activity_perfil 
          */
         public static final int s_perfil_predio_sair=0x7f060016;
         public static final int s_predio_bairro=0x7f060012;
@@ -139,6 +145,12 @@ public final class R {
         /**  activity_cadastro_predio 
          */
         public static final int s_predio_telefone=0x7f06000e;
+        /**  activity_ranking 
+         */
+        public static final int s_ranking=0x7f060018;
+        public static final int s_ranking_gastos=0x7f06001b;
+        public static final int s_ranking_nome=0x7f06001a;
+        public static final int s_ranking_posicao=0x7f060019;
     }
     public static final class style {
         public static final int eco=0x7f070000;
