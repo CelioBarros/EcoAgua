@@ -33,6 +33,8 @@
     <!-- activity_perfil -->
     <string name="s_perfil_predio_sair">Sair</string>
     <string name="s_perfil_predio_cadastrar">Cadastrar morador</string>
+    <string name="s_perfil_medicao">Medição:</string>
+    <string name="s_perfil_medicao_cadastrar">Cadastrar</string>
     
     <!-- activity_ranking -->
     <string name="s_ranking">Ranking</string>
