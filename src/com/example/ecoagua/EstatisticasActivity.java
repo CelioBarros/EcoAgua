@@ -6,16 +6,22 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
+import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.LegendRenderer;
+import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
+import com.jjoe64.graphview.helper.StaticLabelsFormatter;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
+import com.jjoe64.graphview.series.PointsGraphSeries;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -32,6 +38,7 @@ public class EstatisticasActivity extends Activity {
 	private Spinner tempo;
 	private EditText etData;
 	private String selected;
+	private LineGraphSeries<DataPoint> series;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,24 +48,25 @@ public class EstatisticasActivity extends Activity {
 
 		hoje = Calendar.getInstance();
 		selected = "Semana";
-		
+
 		graph = (GraphView) findViewById(R.id.graph);
 		tempo = (Spinner) findViewById(R.id.tempo);
 		etData = (EditText) findViewById(R.id.ed_data);
 
-		setSppinerTempo(); //coloca as opcoes semana e mes
-		setData(hoje); //mostra a data pra selecionar
-		setGrafico(); //seta o grafico quando muda o sppiner
-		setSeries(hoje); //seta series pra criar o grafico
+		setSppinerTempo(); // coloca as opcoes semana e mes
+		setData(hoje); // mostra a data pra selecionar
+		setSelected(); // seta o grafico quando muda o sppiner
+		setSeries(hoje); // seta series pra criar o grafico
 	}
 
 	private void setSeries(Calendar dia) {
-		seriesSemana = new LineGraphSeries<DataPoint>(criaDataPoints(getQtdDiasSemana()));
-		seriesMes = new LineGraphSeries<DataPoint>(criaDataPoints(getQtdDiasMes(dia)));
-		
+		seriesSemana = new LineGraphSeries<DataPoint>(
+				criaDataPoints(getQtdDiasSemana()));
+		seriesMes = new LineGraphSeries<DataPoint>(
+				criaDataPoints(getQtdDiasMes(dia)));
 	}
 
-	private void setGrafico() {
+	private void setSelected() {
 		tempo.setOnItemSelectedListener(new OnItemSelectedListener() {
 
 			@Override
@@ -84,28 +92,10 @@ public class EstatisticasActivity extends Activity {
 
 	}
 
-	private void setSppinerTempo() {
-		List<String> tempoCategorias = new ArrayList<String>();
-		tempoCategorias.add("Semana");
-		tempoCategorias.add("Mês");
-
-		ArrayAdapter<String> tempoAdapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_spinner_item, tempoCategorias);
-
-		tempoAdapter
-				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		tempo.setAdapter(tempoAdapter);
-
-	}
-
 	private void criaGrafico() {
-		LineGraphSeries<DataPoint> series;
-		
-		if(selected.equals("Semana")){
-			series = seriesSemana;
-		}else{
-			series = seriesMes;
-		}
+
+		checkSelected();
+
 		graph.removeAllSeries();
 		graph.addSeries(series);
 
@@ -113,29 +103,31 @@ public class EstatisticasActivity extends Activity {
 		series.setTitle("Consumo (L)");
 		graph.getLegendRenderer().setVisible(true);
 		graph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.TOP);
+
+		// setNumLabelsX(7);
+
+		xSoInt();
+
+		scroll();
 	}
 
 	private DataPoint[] criaDataPoints(int qtdDias) {
 		int start = 0;
-		DataPoint[] data = new DataPoint[qtdDias];
-
-		while (start != qtdDias) {
+		DataPoint[] data = new DataPoint[qtdDias + 1];
+		
+		//mudar o valor de 1 para os dados de medicao
+		while (start != qtdDias + 1) {
 			// substituir o 1 pelo dado da lista de medicoes
 			data[start] = new DataPoint(start, 1);
 			start++;
 		}
-
 		return data;
-	}
-
-	private int getQtdDiasMes(Calendar dia) {
-		return dia.getActualMaximum(Calendar.DAY_OF_MONTH);
 	}
 
 	private int getQtdDiasSemana() {
 		return 7;
 	}
-	
+
 	//
 	private void setData(final Calendar dia) {
 
@@ -168,13 +160,71 @@ public class EstatisticasActivity extends Activity {
 	private void updateLabel(Calendar dia) {
 
 		String myFormat = "dd/MM/yyyy"; // In which you need put here
-		SimpleDateFormat sdf = new SimpleDateFormat(myFormat, new Locale("pt", "BR"));
+		SimpleDateFormat sdf = new SimpleDateFormat(myFormat, new Locale("pt",
+				"BR"));
 
 		etData.setText(sdf.format(dia.getTime()));
-		
-		//teria um atualiza dados
-		setSeries(dia); //atualiza dias
-		criaGrafico(); //atualiza grafico
+
+		// teria um atualiza dados
+		setSeries(dia); // atualiza dias
+		criaGrafico(); // atualiza grafico
+	}
+
+	private void checkSelected() {
+		if (selected.equals("Semana")) {
+			series = seriesSemana;
+		} else {
+			series = seriesMes;
+		}
+	}
+
+	private void setNumLabelsX(int num) {
+		// set num horizontal labels
+		graph.getGridLabelRenderer().setNumHorizontalLabels(num);
+
+	}
+
+	private void xSoInt() {
+		// custom label
+		graph.getGridLabelRenderer().setLabelFormatter(
+				new DefaultLabelFormatter() {
+					@Override
+					public String formatLabel(double value, boolean isValueX) {
+						if (isValueX) {
+							// show normal x values
+							return super.formatLabel((int) value, isValueX);
+						} else {
+							// show currency for y values
+							return super.formatLabel((int) value, isValueX);
+						}
+					}
+				});
+
+	}
+
+	private void scroll() {
+		// scroll
+		graph.getViewport().setScrollable(true);
+		graph.getViewport().setScalable(true);
+
+	}
+
+	private int getQtdDiasMes(Calendar dia) {
+		return dia.getActualMaximum(Calendar.DAY_OF_MONTH);
+	}
+
+	private void setSppinerTempo() {
+		List<String> tempoCategorias = new ArrayList<String>();
+		tempoCategorias.add("Semana");
+		tempoCategorias.add("Mês");
+
+		ArrayAdapter<String> tempoAdapter = new ArrayAdapter<String>(this,
+				android.R.layout.simple_spinner_item, tempoCategorias);
+
+		tempoAdapter
+				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		tempo.setAdapter(tempoAdapter);
+
 	}
 
 }
