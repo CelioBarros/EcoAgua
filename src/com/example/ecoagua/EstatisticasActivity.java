@@ -5,33 +5,35 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 
+import com.example.model.CalendarUtils;
 import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.LegendRenderer;
-import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
-import com.jjoe64.graphview.helper.StaticLabelsFormatter;
 import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.DataPointInterface;
 import com.jjoe64.graphview.series.LineGraphSeries;
-import com.jjoe64.graphview.series.PointsGraphSeries;
+import com.jjoe64.graphview.series.OnDataPointTapListener;
+import com.jjoe64.graphview.series.Series;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnTouchListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class EstatisticasActivity extends Activity {
 	// saber quantos dias tem o mês
-	private Calendar hoje;
+	private Calendar dia;
 	private GraphView graph;
 	private LineGraphSeries<DataPoint> seriesMes;
 	private LineGraphSeries<DataPoint> seriesSemana;
@@ -46,7 +48,7 @@ public class EstatisticasActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_estatisticas);
 
-		hoje = Calendar.getInstance();
+		dia = Calendar.getInstance();
 		selected = "Semana";
 
 		graph = (GraphView) findViewById(R.id.graph);
@@ -54,12 +56,12 @@ public class EstatisticasActivity extends Activity {
 		etData = (EditText) findViewById(R.id.ed_data);
 
 		setSppinerTempo(); // coloca as opcoes semana e mes
-		setData(hoje); // mostra a data pra selecionar
+		setData(); // mostra a data pra selecionar
 		setSelected(); // seta o grafico quando muda o sppiner
-		setSeries(hoje); // seta series pra criar o grafico
+		setSeries(); // seta series pra criar o grafico
 	}
 
-	private void setSeries(Calendar dia) {
+	private void setSeries() {
 		seriesSemana = new LineGraphSeries<DataPoint>(
 				criaDataPoints(getQtdDiasSemana()));
 		seriesMes = new LineGraphSeries<DataPoint>(
@@ -98,11 +100,12 @@ public class EstatisticasActivity extends Activity {
 
 		graph.removeAllSeries();
 		graph.addSeries(series);
-
+		
+		setPropriedadesSerie();
+		
 		// legenda
-		series.setTitle("Consumo (L)");
 		graph.getLegendRenderer().setVisible(true);
-		graph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.TOP);
+		graph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.TOP);	
 
 		// setNumLabelsX(7);
 
@@ -111,14 +114,40 @@ public class EstatisticasActivity extends Activity {
 		scroll();
 	}
 
+	private void setPropriedadesSerie() {
+		// legenda
+		series.setTitle("Consumo (L)");
+		// styling series
+		series.setColor(Color.GREEN);
+		series.setDrawDataPoints(true);
+		series.setDataPointsRadius(10);
+		series.setThickness(8);
+		
+		series.setOnDataPointTapListener(new OnDataPointTapListener() {
+			@Override
+			public void onTap(Series series, DataPointInterface dataPoint) {
+				Calendar temp = dia;
+				temp.set(Calendar.DAY_OF_MONTH, (int)dataPoint.getX());
+				
+				Toast.makeText(
+						EstatisticasActivity.this,
+						"Consumo: " + dataPoint.getY() + " L"+ "\nData: " + CalendarUtils.getDataFormatadaSemHoras(temp)
+								,
+						Toast.LENGTH_SHORT).show();
+			}
+		});
+	}
+
 	private DataPoint[] criaDataPoints(int qtdDias) {
 		int start = 0;
 		DataPoint[] data = new DataPoint[qtdDias + 1];
-		
-		//mudar o valor de 1 para os dados de medicao
+
+		Random gerador = new Random();
+
+		// mudar o valor de 1 para os dados de medicao
 		while (start != qtdDias + 1) {
 			// substituir o 1 pelo dado da lista de medicoes
-			data[start] = new DataPoint(start, 1);
+			data[start] = new DataPoint(start, gerador.nextInt(20));
 			start++;
 		}
 		return data;
@@ -129,7 +158,7 @@ public class EstatisticasActivity extends Activity {
 	}
 
 	//
-	private void setData(final Calendar dia) {
+	private void setData() {
 
 		final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
 
@@ -139,7 +168,7 @@ public class EstatisticasActivity extends Activity {
 				dia.set(Calendar.YEAR, year);
 				dia.set(Calendar.MONTH, monthOfYear);
 				dia.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-				updateLabel(dia);
+				updateLabel();
 
 			}
 
@@ -149,15 +178,15 @@ public class EstatisticasActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				new DatePickerDialog(EstatisticasActivity.this, date, hoje
-						.get(Calendar.YEAR), hoje.get(Calendar.MONTH), hoje
+				new DatePickerDialog(EstatisticasActivity.this, date, dia
+						.get(Calendar.YEAR), dia.get(Calendar.MONTH), dia
 						.get(Calendar.DAY_OF_MONTH)).show();
 			}
 		});
 
 	}
 
-	private void updateLabel(Calendar dia) {
+	private void updateLabel() {
 
 		String myFormat = "dd/MM/yyyy"; // In which you need put here
 		SimpleDateFormat sdf = new SimpleDateFormat(myFormat, new Locale("pt",
@@ -166,7 +195,7 @@ public class EstatisticasActivity extends Activity {
 		etData.setText(sdf.format(dia.getTime()));
 
 		// teria um atualiza dados
-		setSeries(dia); // atualiza dias
+		setSeries(); // atualiza dias
 		criaGrafico(); // atualiza grafico
 	}
 

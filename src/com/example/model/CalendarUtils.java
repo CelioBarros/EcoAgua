@@ -23,5 +23,9 @@ public class CalendarUtils {
 		return String.format(Locale.getDefault(), "%02d/%02d/%d às %02d:%02d", dataCriacao.get(Calendar.DAY_OF_MONTH), dataCriacao.get(Calendar.MONTH), dataCriacao.get(Calendar.YEAR),
 				dataCriacao.get(Calendar.HOUR_OF_DAY), dataCriacao.get(Calendar.MINUTE));
 	}
+	
+	public static String getDataFormatadaSemHoras(Calendar dataCriacao) {
+		return String.format(Locale.getDefault(), "%02d/%02d/%d", dataCriacao.get(Calendar.DAY_OF_MONTH), dataCriacao.get(Calendar.MONTH), dataCriacao.get(Calendar.YEAR));
+	}
 
 }
