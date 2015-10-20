@@ -30,6 +30,12 @@ public class Usuario {
 		setEndereco(endereco);
 	}
 
+	public Usuario(String nome, String senha) {
+		// TODO Auto-generated constructor stub
+		setNome(nome);
+		setSenha(senha);
+	}
+
 	/**
 	 * Get nome do usuario
 	 * @return nome
