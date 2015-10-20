@@ -1,290 +1,265 @@
 package controller;
 
-
-import java.io.IOException;
-
 import java.util.ArrayList;
+import java.util.List;
 
-import models.MoradorAPI;
+import models.*;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.methods.CloseableHttpResponse;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+ 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.util.EntityUtils;
+import org.apache.http.impl.client.DefaultHttpClient;
+
 import org.json.*;
 
 public class API{
 
 	private static final String DOMAIN  = "http://aguaeco-celiobarros.rhcloud.com";
 
-	public static boolean login(String usuario, String senha) throws ClientProtocolException, IOException{
-		CloseableHttpClient httpclient = HttpClients.createDefault();
-
+	public static Usuario login(String usuario, String senha) throws Exception{
 		boolean login;
 		
-		try {
+		Usuario user;
+		String url, response;
+		url= DOMAIN +"/login/" + usuario +"/" + senha;
+		
+		response = GET(url);
+		
+		JSONArray array = new JSONArray(response);
+		JSONObject obj = array.getJSONObject(0);
 
-			String url = (DOMAIN + "/login/" + usuario + "/" + senha) ;
-			System.out.println(url);
-			HttpGet httpGet = new HttpGet(url);
-			CloseableHttpResponse response1 = httpclient.execute(httpGet);
-			
-			try {
-				System.out.println(response1.getStatusLine());
-				HttpEntity entity1 = response1.getEntity();
+		login = obj.getBoolean("login");
+		System.out.println(login);
 
-				JSONArray array = new JSONArray(EntityUtils.toString(response1.getEntity()));
-				JSONObject obj = array.getJSONObject(0);
-
-				login = obj.getBoolean("login");
-				System.out.println(login);
-				
-				EntityUtils.consume(entity1);
-			} finally {
-				response1.close();
+		if(login){
+			if(obj.getString("tipo_usuario") == "Morador"){
+				user = infoMorador(obj.getInt("id_morador"));
+			}else{
+				user = infoPredio(obj.getInt("id_predio"));
 			}
-		}finally{
-			httpclient.close();
-
+		}else{
+			user = null;
 		}
 		
-		return login;
+		
+		return user;		
 	}
-
-	public static boolean cadastraMorador(int idPredio, String nome, String senha, int apartamento, String loginMorador  ) throws ClientProtocolException, IOException{
-		CloseableHttpClient httpclient = HttpClients.createDefault();
-
-		boolean cadastro;
+	
+	public static Morador infoMorador(int idMorador){
+		
+		Morador morador;
+		String url, response;
+		url = (DOMAIN + "/info_morador/" + idMorador) ;
 		
 		try {
-
-			String url = (DOMAIN + "/cadastra_morador/" + idPredio + "/" + nome + "/" + senha
-					+ "/" + apartamento + "/" + loginMorador) ;
-			System.out.println(url);
-			HttpPost httpPost = new HttpPost(url);
-			CloseableHttpResponse response = httpclient.execute(httpPost);
-		
-			try {
-				System.out.println(response.getStatusLine());
-				HttpEntity entity1 = response.getEntity();
-
-				JSONArray array = new JSONArray(EntityUtils.toString(response.getEntity()));
-				JSONObject obj = array.getJSONObject(0);
-
-				cadastro = obj.getBoolean("cadastro");
-				System.out.println(cadastro);
-				
-				EntityUtils.consume(entity1);
-			} finally {
-				response.close();
-			}
-		}finally{
-			httpclient.close();
-
-		}
-		
-		return cadastro;
-	}
-
-	public static boolean cadastraPredio(String nome, String senha, int telefone, String email, String estado, String cidade, String bairro, String rua, String numero, int cep, String login) throws ClientProtocolException, IOException{
-		CloseableHttpClient httpclient = HttpClients.createDefault();
-
-		boolean cadastro;
-		try {
-
-			String url = (DOMAIN + "/cadastra_predio/" + nome + "/"+ senha + "/"+ telefone + "/" + email + "/"+ estado + "/" + cidade + "/" + bairro + "/" + rua
-					+ "/" + numero + "/" + cep + "/" + login ) ;
-			System.out.println(url);
-			HttpPost httpPost = new HttpPost(url);
-			CloseableHttpResponse response = httpclient.execute(httpPost);
 			
-			try {
-				System.out.println(response.getStatusLine());
-				HttpEntity entity1 = response.getEntity();
-
-				JSONArray array = new JSONArray(EntityUtils.toString(response.getEntity()));
-				JSONObject obj = array.getJSONObject(0);
-
-				cadastro = obj.getBoolean("cadastro");
-				System.out.println(cadastro);
-				
-				EntityUtils.consume(entity1);
-			} finally {
-				response.close();
-			}
-		}finally{
-			httpclient.close();
-
-		}
-		
-		return cadastro;
-	}
-
-	public static MoradorAPI infoMorador(int idMorador) throws ClientProtocolException, IOException{
-		CloseableHttpClient httpclient = HttpClients.createDefault();
-
-		MoradorAPI morador;
-		try {
-
-			String url = (DOMAIN + "/info_morador/" + idMorador) ;
-			System.out.println(url);
-			HttpGet httpGet = new HttpGet(url);
-			CloseableHttpResponse response = httpclient.execute(httpGet);
+			response = GET(url);
 			
-			try {
-				System.out.println(response.getStatusLine());
-				HttpEntity entity1 = response.getEntity();
-
-				JSONArray array = new JSONArray(EntityUtils.toString(response.getEntity()));
-				JSONObject obj = array.getJSONObject(0);
+			JSONArray array = new JSONArray(response);
+			JSONObject obj = array.getJSONObject(0);
 				
-				String login, senha, nome, apartamento;
-				int idPredio;
+			String senha, nome, apartamento, telefone, email;
+			int idPredio;
+			Endereco endereco;
+			Predio predio;
+			
+			telefone = "";
+			email = "";
+			
+			senha = obj.getString("senha");
+			apartamento = obj.getString("apartamento");
+			nome = obj.getString("nome");
+			idPredio = obj.getInt("id_predio"); 
+			
+			predio = infoPredio(idPredio);
+			endereco = predio.getEndereco();
 				
-				login = obj.getString("login_nome");
-				senha = obj.getString("senha");
-				idMorador = obj.getInt("id_morador");
-				apartamento = obj.getString("apartamento");
-				nome = obj.getString("nome");
-				idPredio = obj.getInt("id_predio"); 
+			morador = new Morador(nome, senha, telefone,email,endereco,predio, apartamento);
+			
+			System.out.println(apartamento);
 				
-				morador = new MoradorAPI(idMorador,idPredio,nome, senha, apartamento,login);
-				
-				System.out.println(login);
-
-				EntityUtils.consume(entity1);
-			} finally {
-				response.close();
-			}
-		}finally{
-			httpclient.close();
-
-		}
+		}finally{}
 		
 		return morador;
 	}
 
-	public static void infoPredio(int idPredio) throws ClientProtocolException, IOException{
-		CloseableHttpClient httpclient = HttpClients.createDefault();
-
-		try {
-
-			String url = (DOMAIN + "/info_predio/" + idPredio) ;
-			System.out.println(url);
-			HttpGet httpGet = new HttpGet(url);
-			CloseableHttpResponse response = httpclient.execute(httpGet);
-			
-			try {
-				System.out.println(response.getStatusLine());
-				HttpEntity entity = response.getEntity();
-
-				JSONArray array = new JSONArray(EntityUtils.toString(response.getEntity()));
-				JSONObject obj = array.getJSONObject(0);
-
-				String login = obj.getString("login");
-				System.out.println(login);
-
-				EntityUtils.consume(entity);
-			} finally {
-				response.close();
-			}
-		}finally{
-			httpclient.close();
-		}
+	public static Predio infoPredio(int idPredio){
+		Predio predio;
+		String url, response;
+		url = (DOMAIN + "/info_predio/" + idPredio) ;
 		
+		try {
+			
+			response = GET(url);
+			
+			JSONArray array = new JSONArray(response);
+			JSONObject obj = array.getJSONObject(0);
+				
+			String senha, nome, bairro, cep, cidade,rua, numero, estado, telefone, email ;
+			Endereco endereco;
+			
+			//login = obj.getString("login_predio");
+			senha = obj.getString("senha");
+			nome = obj.getString("nome");
+			email = obj.getString("email");
+			telefone = obj.getString("telefone");
+			bairro = obj.getString("bairro");
+			cidade = obj.getString("cidade");
+			estado = obj.getString("estado");
+			rua = obj.getString("rua");
+			cep = obj.getString("cep");
+			numero = obj.getString("numero");
+			
+			endereco = new Endereco(estado,cidade,bairro,rua,cep,numero);
+			predio = new Predio(nome,senha,telefone,email,endereco);
+			
+			System.out.println(estado);
+				
+		}finally{}
+		
+		return predio;
 	}
 
-	public static ArrayList<MoradorAPI> listaMoradores(int idPredio) throws ClientProtocolException, IOException{
-		CloseableHttpClient httpclient = HttpClients.createDefault();
-
-		ArrayList<MoradorAPI> moradores = new ArrayList();
+	public static boolean cadastraMorador(int idPredio, String nome, String senha, String apartamento, String login ){
+		boolean cadastro;
+		String url,response;
 		
-		try {
+		url = (DOMAIN + "/cadastra_morador/" + idPredio + "/"+ nome + "/"+ senha + "/" + apartamento + "/"+ login) ;
+		
+		response = GET(url);
+		
+		JSONArray array = new JSONArray(response);
+		JSONObject obj = array.getJSONObject(0);
 
-			String url = (DOMAIN + "/lista_moradores/" + idPredio) ;
-			System.out.println(url);
-			HttpGet httpGet = new HttpGet(url);
-			CloseableHttpResponse response = httpclient.execute(httpGet);
+		cadastro = obj.getBoolean("cadastro");
+		System.out.println(cadastro);
+
+		return cadastro;
+	}
+	
+	public static boolean cadastraPredio(String nome, String senha, int telefone, String email, String estado, String cidade, String bairro, String rua, String numero, int cep, String login){
+		boolean cadastro;
+		String url,response;
+		
+		url = (DOMAIN + "/cadastra_predio/" + nome + "/"+ senha + "/"+ telefone + "/" + email + "/"+ estado + "/" + cidade + "/" + bairro + "/" + rua
+				+ "/" + numero + "/" + cep + "/" + login ) ;
+		
+		response = GET(url);
+		
+		JSONArray array = new JSONArray(response);
+		JSONObject obj = array.getJSONObject(0);
+
+		cadastro = obj.getBoolean("cadastro");
+		System.out.println(cadastro);
+
+		return cadastro;
+	}
+	
+	public static ArrayList<Morador> listaMoradores(int idPredio){
+		ArrayList<Morador> moradores = new ArrayList();
+
+		String url,response;
+		
+		url = (DOMAIN + "/lista_moradores/" + idPredio) ;
+		response = GET(url);					
+		
+		JSONArray array = new JSONArray(response);
+		JSONObject obj = array.getJSONObject(0);
+
+		JSONArray listaDeMoradores = obj.getJSONArray("lista_moradores");
+				
+		String senha, nome, apartamento, telefone, email;
+		
+		Endereco endereco;
+		Predio predio;
+		
+		telefone = "";
+		email = "";
+		
+		predio = infoPredio(idPredio);
+		endereco = predio.getEndereco();
+		
+		for (int i = 0; i < listaDeMoradores.length(); i++) {
+			senha = listaDeMoradores.getJSONObject(i).getString("senha");
+			apartamento = listaDeMoradores.getJSONObject(i).getString("apartamento");
+			nome = listaDeMoradores.getJSONObject(i).getString("nome");
 			
-			try {
-				System.out.println(response.getStatusLine());
-				HttpEntity entity = response.getEntity();
-
-				JSONArray array = new JSONArray(EntityUtils.toString(response.getEntity()));
-				JSONObject obj = array.getJSONObject(0);
-
-				JSONArray listaDeMoradores = obj.getJSONArray("lista_moradores");
-				
-				String login, senha, nome, apartamento;
-				int idMorador;
-				
-				for (int i = 0; i < listaDeMoradores.length(); i++) {
-					login = listaDeMoradores.getJSONObject(i).getString("login_nome");
-					senha = listaDeMoradores.getJSONObject(i).getString("senha");
-					idMorador = listaDeMoradores.getJSONObject(i).getInt("id_morador");
-					apartamento = listaDeMoradores.getJSONObject(i).getString("apartamento");
-					nome = listaDeMoradores.getJSONObject(i).getString("nome");
+			moradores.add(new Morador(nome, senha, telefone,email,endereco,predio, apartamento));
 					
-					moradores.add(new MoradorAPI(idMorador,idPredio,nome, senha, apartamento,login));
-					
-					System.out.println(apartamento);
-				}
+			System.out.println(apartamento);
+		}
 				
-				EntityUtils.consume(entity);
-			} finally {
-				response.close();
-			}
-		}finally{
-			httpclient.close();
-		}		
-		
+				
 		return moradores;
 	}
-	
-	public static boolean atualizaMorador(int idPredio,int idMorador, String nome, String senha, String apartamento, String login  ) throws ClientProtocolException, IOException{
-		CloseableHttpClient httpclient = HttpClients.createDefault();
-
-		boolean cadastro;
-		try {
-
-			String url = (DOMAIN + "/atualiza_morador/" + idMorador + "/" + idPredio + "/" + nome
-					+ "/" + senha + "/" + apartamento + "/" + login) ;
-			System.out.println(url);
-			HttpPost httpPost = new HttpPost(url);
-			CloseableHttpResponse response = httpclient.execute(httpPost);
-	
-			try {
-				System.out.println(response.getStatusLine());
-				HttpEntity entity = response.getEntity();
-
-				JSONArray array = new JSONArray(EntityUtils.toString(response.getEntity()));
-				JSONObject obj = array.getJSONObject(0);
-
-				cadastro = obj.getBoolean("cadastro");
-				System.out.println(cadastro);
-
-				EntityUtils.consume(entity);
-			} finally {
-				response.close();
-			}
-		}finally{
-			httpclient.close();
-
-		}
 		
-		return cadastro;
+	public static boolean atualizaMorador(int idPredio,int idMorador, String nome, String senha, String apartamento, String login  ){
+	
+		boolean cadastro;
+		String url,response;
+		
+		url = (DOMAIN + "/atualiza_morador/" + idMorador + "/" + idPredio + "/" + nome
+					+ "/" + senha + "/" + apartamento + "/" + login) ;
+		
+		response = GET(url);
+		
+		JSONArray array = new JSONArray(response);
+		JSONObject obj = array.getJSONObject(0);
 
+		cadastro = obj.getBoolean("cadastro");
+		System.out.println(cadastro);
+
+		return cadastro;
 	}
 
-	
+	public static String GET(String url){
+        InputStream inputStream = null;
+        String result = "";
+        try {
+ 
+            // create HttpClient
+            HttpClient httpclient = new DefaultHttpClient();
+ 
+            // make GET request to the given URL
+            HttpResponse httpResponse = httpclient.execute(new HttpGet(url));
+ 
+            // receive response as inputStream
+            inputStream = httpResponse.getEntity().getContent();
+ 
+            // convert inputstream to string
+            if(inputStream != null)
+                result = convertInputStreamToString(inputStream);
+            else
+                result = "Did not work!";
+ 
+        } catch (Exception e) {
+            //Log.d("InputStream", e.getLocalizedMessage());
+        }
+ 
+        return result;
+    }
+ 
+    private static String convertInputStreamToString(InputStream inputStream) throws IOException{
+        BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
+        String line = "";
+        String result = "";
+        while((line = bufferedReader.readLine()) != null)
+            result += line;
+ 
+        inputStream.close();
+        return result;
+ 
+    }
+
 	public static void main(String[] args) throws Exception {
-		login("teste", "teste2");
-		cadastraMorador(1,"felipe","teste",1,"felipe");
-		infoMorador(1);
+		login("felipe0", "123");
+		cadastraMorador(1,"felipe","teste","1","felipe");
+	
 		listaMoradores(1);
 	}
 
