@@ -1,6 +1,5 @@
 package com.example.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Predio extends Usuario implements Comparable<Predio> {
@@ -83,7 +82,7 @@ public class Predio extends Usuario implements Comparable<Predio> {
 	 */
 	public void setColocacao(int colocacao) {
 		if (colocacao == 0) {
-			throw new IllegalArgumentException("Colocação não pode ser 0.");
+			throw new IllegalArgumentException("Colocaï¿½ï¿½o nï¿½o pode ser 0.");
 		}
 		this.colocacao = colocacao;
 	}
@@ -94,7 +93,7 @@ public class Predio extends Usuario implements Comparable<Predio> {
 
 	public void setMoradores(List<Morador> moradores) {
 		if(moradores == null){
-			throw new IllegalArgumentException("Moradores não podem ser null.");
+			throw new IllegalArgumentException("Moradores nï¿½o podem ser null.");
 		}
 		this.moradores = moradores;
 	}
@@ -105,7 +104,7 @@ public class Predio extends Usuario implements Comparable<Predio> {
 
 	public void setNotificacoes(List<Notificacao> notificacoes) {
 		if(notificacoes == null){
-			throw new IllegalArgumentException("Notificações não podem ser null.");
+			throw new IllegalArgumentException("Notificaï¿½ï¿½es nï¿½o podem ser null.");
 		}
 		this.notificacoes = notificacoes;
 	}
@@ -116,7 +115,7 @@ public class Predio extends Usuario implements Comparable<Predio> {
 
 	public void setMedicoes(List<Medicao> medicoes) {
 		if(medicoes == null){
-			throw new IllegalArgumentException("Medições não podem ser null.");
+			throw new IllegalArgumentException("Mediï¿½ï¿½es nï¿½o podem ser null.");
 		}
 		this.medicoes = medicoes;
 	}
