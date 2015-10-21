@@ -6,7 +6,6 @@ import com.example.ecoagua.R;
 import com.example.model.Predio;
 
 import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -27,7 +26,7 @@ public class RankingList extends AdapterListView<Predio> {
             //infla o layout para podermos pegar as views
             view = getmInflater().inflate(R.layout.activity_list_ranking, null);
 
-            //cria um item de suporte para não precisarmos sempre
+            //cria um item de suporte para nï¿½o precisarmos sempre
             //inflar as mesmas informacoes
             itemHolder = new ItemSuporte();
             itemHolder.tvGastos = ((TextView) view.findViewById(R.id.tv_list_gastos));
@@ -37,7 +36,7 @@ public class RankingList extends AdapterListView<Predio> {
             //define os itens na view;
             view.setTag(itemHolder);
         } else {
-            //se a view já existe pega os itens.
+            //se a view jï¿½ existe pega os itens.
             itemHolder = (ItemSuporte) view.getTag();
         }
 
@@ -48,7 +47,7 @@ public class RankingList extends AdapterListView<Predio> {
         itemHolder.tvNome.setText(item.getNome());
         itemHolder.tvPosicao.setText(Integer.toString(item.getColocacao()));
 
-        //retorna a view com as informações
+        //retorna a view com as informaï¿½ï¿½es
         return view;
 	}
 	

@@ -1,15 +1,12 @@
 package com.example.ecoagua;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
 import com.example.model.Notificacao;
 import com.example.model.Predio;
 import com.example.scrollable.NotificacoesList;
-import com.example.scrollable.RankingList;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.ListView;

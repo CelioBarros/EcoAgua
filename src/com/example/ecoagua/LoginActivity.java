@@ -1,9 +1,5 @@
 package com.example.ecoagua;
 
-import java.io.IOException;
-
-import org.apache.http.client.ClientProtocolException;
-
 import com.example.controller.API;
 
 import android.app.Activity;
@@ -34,12 +30,10 @@ public class LoginActivity extends Activity{
 					Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 					startActivity(intent);
 					
-				} catch (IOException e) {
+				}catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				/*//mudar depois para activity login
-				*/
 			}
 		});
 		

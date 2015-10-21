@@ -6,7 +6,6 @@ public class Morador extends Usuario {
 	private Predio predio;
 	private String apartamento;
 	private String nomeUsuario; // nomeDoPredio_Apartamento
-	private int idPredio, id;
 
 	/**
 	 * Construtor de morador
@@ -26,32 +25,7 @@ public class Morador extends Usuario {
 		setApartamento(apartamento);
 		setNomeUsuario(predio.getNome() + "_" + apartamento);
 	}
-
-	public Morador(int idMorador, int idPredio, String nome, String senha,
-			String apartamento2, String login) {
-		super(nome, senha);
-		setIdPredio(idPredio);
-		setId(idMorador);
-
-	}
-
-	private void setId(int id) {
-		this.id = id;
-
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public int getIdPredio() {
-		return idPredio;
-	}
-
-	private void setIdPredio(int idPredio) {
-		this.idPredio = idPredio;
-
-	}
+	
 
 	/**
 	 * Get predio
@@ -68,8 +42,8 @@ public class Morador extends Usuario {
 	 * @param predio
 	 */
 	public void setPredio(Predio predio) {
-		if (predio != null) {
-			throw new IllegalArgumentException("Prédio é obrigatório.");
+		if (predio == null) {
+			throw new IllegalArgumentException("Prï¿½dio ï¿½ obrigatï¿½rio.");
 		}
 		this.predio = predio;
 	}
@@ -91,11 +65,9 @@ public class Morador extends Usuario {
 	public void setApartamento(String apartamento) {
 		if (apartamento != null) {
 			if (apartamento.trim().isEmpty()) {
-				throw new IllegalArgumentException("Apartamento é obrigatório.");
+				throw new IllegalArgumentException("Apartamento ï¿½ obrigatï¿½rio.");
 			} else if (apartamento.length() > TAMANHO_MAXIMO_APARTAMENTO) {
-				throw new IllegalArgumentException(
-						"Tamanho do nome do apartamento excede o limite de "
-								+ TAMANHO_MAXIMO_APARTAMENTO + " caracteres.");
+				throw new IllegalArgumentException("Tamanho do nome do apartamento excede o limite de " + TAMANHO_MAXIMO_APARTAMENTO + " caracteres.");
 			}
 		}
 		this.apartamento = apartamento;
@@ -118,11 +90,9 @@ public class Morador extends Usuario {
 	public void setNomeUsuario(String nomeUsuario) {
 		if (nomeUsuario != null) {
 			if (nomeUsuario.trim().isEmpty()) {
-				throw new IllegalArgumentException("Apartamento é obrigatório.");
+				throw new IllegalArgumentException("Apartamento ï¿½ obrigatï¿½rio.");
 			} else if (nomeUsuario.length() > TAMANHO_MAXIMO_USUARIO) {
-				throw new IllegalArgumentException(
-						"Tamanho do usuário excede o limite de "
-								+ TAMANHO_MAXIMO_USUARIO + " caracteres.");
+				throw new IllegalArgumentException("Tamanho do usuï¿½rio excede o limite de " + TAMANHO_MAXIMO_USUARIO + " caracteres.");
 			}
 		}
 		this.nomeUsuario = nomeUsuario;

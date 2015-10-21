@@ -1,7 +1,5 @@
 package com.example.ecoagua;
 
-import com.example.model.Endereco;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
