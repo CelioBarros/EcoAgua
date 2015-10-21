@@ -42,7 +42,7 @@ public class Morador extends Usuario {
 	 * @param predio
 	 */
 	public void setPredio(Predio predio) {
-		if (predio != null) {
+		if (predio == null) {
 			throw new IllegalArgumentException("Pr�dio � obrigat�rio.");
 		}
 		this.predio = predio;

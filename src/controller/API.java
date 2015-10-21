@@ -100,7 +100,8 @@ public class API{
 			JSONArray array = new JSONArray(response);
 			JSONObject obj = array.getJSONObject(0);
 				
-			String senha, nome, bairro, cep, cidade,rua, numero, estado, telefone, email ;
+			String senha, nome, bairro, cidade,rua, numero, estado, telefone, email ;
+			int cep;
 			Endereco endereco;
 			
 			//login = obj.getString("login_predio");
@@ -110,12 +111,14 @@ public class API{
 			telefone = obj.getString("telefone");
 			bairro = obj.getString("bairro");
 			cidade = obj.getString("cidade");
-			estado = obj.getString("estado");
+			//estado = obj.getString("estado");
+			estado = "PB";
 			rua = obj.getString("rua");
-			cep = obj.getString("cep");
-			numero = obj.getString("numero");
-			
-			endereco = new Endereco(estado,cidade,bairro,rua,cep,numero);
+			//cep = obj.getInt("cep");
+			cep = 11111111;
+			//numero = obj.getString("numero");
+			numero = "10";
+			endereco = new Endereco(estado,cidade,bairro,rua,Integer.toString(cep),numero);
 			predio = new Predio(nome,senha,telefone,email,endereco);
 			
 			System.out.println(estado);
@@ -191,7 +194,7 @@ public class API{
 			
 			moradores.add(new Morador(nome, senha, telefone,email,endereco,predio, apartamento));
 					
-			System.out.println(apartamento);
+			System.out.println(nome);
 		}
 				
 				
