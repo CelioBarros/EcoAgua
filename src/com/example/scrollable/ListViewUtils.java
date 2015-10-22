@@ -22,7 +22,7 @@ public class ListViewUtils {
 	    for (int i = 0; i < listAdapter.getCount(); i++) {
 	        view = listAdapter.getView(i, view, listView);
 	        if (i == 0)
-	            view.setLayoutParams(new ViewGroup.LayoutParams(desiredWidth, LayoutParams.WRAP_CONTENT));
+	            view.setLayoutParams(new ViewGroup.LayoutParams(desiredWidth, android.view.ViewGroup.LayoutParams.WRAP_CONTENT));
 
 	        view.measure(desiredWidth, MeasureSpec.UNSPECIFIED);
 	        totalHeight += view.getMeasuredHeight();
