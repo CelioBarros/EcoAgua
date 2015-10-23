@@ -11,8 +11,8 @@ public class Endereco {
 	private String cidade;
 	private String bairro;
 	private String rua;
-	private String cep;
-	private String numero;
+	private int cep;
+	private int numero;
 	
 	/**
 	 * Construtor de endereco
@@ -24,7 +24,7 @@ public class Endereco {
 	 * @param nome1
 	 */
 	public Endereco(String estado, String cidade, String bairro, String rua,
-			String cep, String numero) {
+			int numero, int cep) {
 		super();
 		setEstado(estado);
 		setCidade(cidade);
@@ -122,7 +122,7 @@ public class Endereco {
 	 * Get cep
 	 * @return cep
 	 */
-	public String getCep() {
+	public int getCep() {
 		return cep;
 	}
 	
@@ -130,8 +130,8 @@ public class Endereco {
 	 * Set cep
 	 * @param cep
 	 */
-	public void setCep(String cep) {
-		if (cep.length() != TAMANHO_CEP) {
+	public void setCep(int cep) {
+		if (Integer.toString(cep).length() != TAMANHO_CEP) {
 			throw new IllegalArgumentException("Tamanho do CEP é diferente de " + TAMANHO_CEP + " caracteres.");
 		}
 		this.cep = cep;
@@ -141,16 +141,16 @@ public class Endereco {
 	 * Get numero
 	 * @return
 	 */
-	public String getNumero() {
+	public int getNumero() {
 		return numero;
 	}
 	
 	/**
 	 * Set numero
-	 * @param numero
+	 * @param cep2
 	 */
-	public void setNumero(String numero) {
-		if (Integer.parseInt(numero) == 0) {
+	public void setNumero(int numero) {
+		if (numero == 0) {
 			throw new IllegalArgumentException("Número não pode ser 0.");
 		}
 		this.numero = numero;

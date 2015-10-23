@@ -18,6 +18,7 @@ import org.json.*;
  * @version     %I%, %G%
  * @since       1.0
  */
+@SuppressWarnings("deprecation")
 public class API{
 
 	/** 
@@ -146,8 +147,8 @@ public class API{
 			JSONArray array = new JSONArray(response);
 			JSONObject obj = array.getJSONObject(0);
 				
-			String senha, nome, bairro, cidade,rua, numero, estado, telefone, email ;
-			int cep;
+			String senha, nome, bairro, cidade,rua, estado, telefone, email ;
+			int cep, numero;
 			Endereco endereco;
 			
 			//login = obj.getString("login_predio");
@@ -163,8 +164,8 @@ public class API{
 			//cep = obj.getInt("cep");
 			cep = 11111111;
 			//numero = obj.getString("numero");
-			numero = "10";
-			endereco = new Endereco(estado,cidade,bairro,rua,Integer.toString(cep),numero);
+			numero = 10;
+			endereco = new Endereco(estado,cidade,bairro,rua,cep,numero);
 			predio = new Predio(nome,senha,telefone,email,endereco);
 			
 			System.out.println(estado);
@@ -230,7 +231,7 @@ public class API{
     * 
     * @see JSONException
     */
-	public static boolean cadastraPredio(String nome, String senha, int telefone, String email, String estado, String cidade, String bairro, String rua, String numero, int cep, String login) throws JSONException{
+	public static boolean cadastraPredio(String nome, String senha, String telefone, String email, String estado, String cidade, String bairro, String rua, int numero, int cep, String login) throws JSONException{
 		boolean cadastro;
 		String url,response;
 		
@@ -268,7 +269,7 @@ public class API{
     * @see ArrayList
     */	
 	public static ArrayList<Morador> listaMoradores(int idPredio) throws JSONException{
-		ArrayList<Morador> moradores = new ArrayList();
+		ArrayList<Morador> moradores = new ArrayList<Morador>();
 
 		String url,response;
 		

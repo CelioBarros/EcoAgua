@@ -1,6 +1,7 @@
 package com.example.ecoagua;
 
 import com.example.controller.API;
+import com.example.model.Usuario;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -26,7 +27,7 @@ public class LoginActivity extends Activity{
 				String senha = etSenha.getText().toString();
 				
 				try {
-					API.login(login, senha);
+					Usuario user = API.login(login, senha);
 					Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 					startActivity(intent);
 					
