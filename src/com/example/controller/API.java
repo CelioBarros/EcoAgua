@@ -2,18 +2,10 @@ package com.example.controller;
 
 import com.example.model.*;
 
+import android.util.Log;
+
 import java.util.ArrayList;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
+import java.util.concurrent.ExecutionException;
 
 import org.json.*;
 
@@ -52,15 +44,15 @@ public class API{
 		Usuario user;
 		String url, response;
 		url= DOMAIN +"/login/" + usuario +"/" + senha;
+		Log.d("url", url);
 		
 		response = GET(url);
-		
+		Log.d("JSON",response);
 		JSONArray array = new JSONArray(response);
 		JSONObject obj = array.getJSONObject(0);
 
 		login = obj.getBoolean("login");
-		System.out.println(login);
-
+		
 		if(login){
 			if(obj.getString("tipo_usuario") == "Morador"){
 				user = infoMorador(obj.getInt("id_morador"));
@@ -70,6 +62,9 @@ public class API{
 		}else{
 			user = null;
 		}
+		
+		Log.d("Login", login + "");
+		
 		
 		
 		return user;		
@@ -359,60 +354,24 @@ public class API{
     * 
     */
 	private static String GET(String url){
-        InputStream inputStream = null;
-        String result = "";
-        
-        HttpClient httpclient;
-        HttpResponse httpResponse;
-        HttpEntity enty;
-        
-        try {
-        	
-            // create HttpClient
-            httpclient = new DefaultHttpClient();
+		Log.d("GET","DENTRO DO GET");
+		
+		String resultado= "nao funcionou";
+		
+		try {
+			resultado = new Consulta().execute(url).get();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Log.d("GET resultado", resultado);
  
-            // make GET request to the given URL
-            httpResponse = httpclient.execute(new HttpGet(url));
-            enty = httpResponse.getEntity();
-            
-            
-            // receive response as inputStream
-            inputStream = enty.getContent();
-            
-            // convert inputstream to string
-            if(inputStream != null)
-                result = convertInputStreamToString(inputStream);
-            else
-                result = "Did not work!";
- 
-            if (enty != null)
-                enty.consumeContent();
-            
-        } catch (Exception e) {
-            //Log.d("InputStream", e.getLocalizedMessage());
-        }
- 
-        System.out.println(result);
-        return result;
+		return resultado;
     }
 	
-	/** 
-    *
-    * Recebe uma stream e a converte em uma unica string.
-    * 
-    * @return String   A stream convertida em string.
-    * 
-    */
-    private static String convertInputStreamToString(InputStream inputStream) throws IOException{
-        BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
-        String line = "";
-        String result = "";
-        while((line = bufferedReader.readLine()) != null)
-            result += line;
- 
-        inputStream.close();
-        return result;
- 
-    }
 }
 

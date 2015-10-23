@@ -2,7 +2,7 @@ package com.example.model;
 
 public class Usuario {
 	private static final int TAMANHO_MAXIMO_NOME = 30;
-	private static final int TAMANHO_MINIMO_SENHA = 6;
+	private static final int TAMANHO_MINIMO_SENHA = 2;
 	private static final int TAMANHO_MAXIMO_SENHA = 20;
 	private static final int TAMANHO_MAXIMO_EMAIL = 30;
 	private static final int TAMANHO_MAXIMO_TELEFONE = 11;
@@ -51,12 +51,12 @@ public class Usuario {
 	public void setNome(String nome) {
 		if (nome != null) {
 			if (nome.trim().isEmpty()) {
-				throw new IllegalArgumentException("Nome é obrigatório.");
+				throw new IllegalArgumentException("Nome ï¿½ obrigatï¿½rio.");
 			} else if (nome.length() > TAMANHO_MAXIMO_NOME) {
 				throw new IllegalArgumentException("Tamanho do nome excede o limite de " + TAMANHO_MAXIMO_NOME + " caracteres.");
 			}
 		}else{
-			throw new IllegalArgumentException("Nome é obrigatório.");
+			throw new IllegalArgumentException("Nome ï¿½ obrigatï¿½rio.");
 		}
 		this.apartamento = nome;
 	}
@@ -76,7 +76,7 @@ public class Usuario {
 	public void setSenha(String password) {
 		/*if (password != null) {
 			if (password.trim().isEmpty()) {
-				throw new IllegalArgumentException("Senha é obrigatória.");
+				throw new IllegalArgumentException("Senha ï¿½ obrigatï¿½ria.");
 			} else if (password.length() < TAMANHO_MINIMO_SENHA) {
 				throw new IllegalArgumentException("Deve deve ter pelo menos " + TAMANHO_MINIMO_SENHA + " caracteres.");
 			} else if (password.length() > TAMANHO_MAXIMO_SENHA) {
@@ -101,9 +101,9 @@ public class Usuario {
 	 */
 	public void setTelefone(String telefone) {
 		/*if (telefone == null || telefone.trim().isEmpty()) {
-			throw new IllegalArgumentException("Telefone é obrigatório.");
+			throw new IllegalArgumentException("Telefone ï¿½ obrigatï¿½rio.");
 		} else if (telefone.length() > TAMANHO_MAXIMO_TELEFONE || !telefone.matches(TELEFONE_REGEX)) {
-			throw new IllegalArgumentException("Telefone inválido.");
+			throw new IllegalArgumentException("Telefone invï¿½lido.");
 		}*/
 		this.telefone = telefone;
 	}
@@ -122,9 +122,9 @@ public class Usuario {
 	 */
 	public void setEmail(String email) {
 		/*if (email == null || email.trim().isEmpty()) {
-			throw new IllegalArgumentException("E-mail é obrigatório.");
+			throw new IllegalArgumentException("E-mail ï¿½ obrigatï¿½rio.");
 		} else if (email.length() > TAMANHO_MAXIMO_EMAIL || !email.matches(EMAIL_REGEX)) {
-			throw new IllegalArgumentException("E-mail inválido.");
+			throw new IllegalArgumentException("E-mail invï¿½lido.");
 		}*/
 		this.email = email;
 	}
@@ -144,7 +144,7 @@ public class Usuario {
 	 */
 	public void setEndereco(Endereco endereco) {
 		/*if (endereco != null) {
-			throw new IllegalArgumentException("Endereco é obrigatório.");
+			throw new IllegalArgumentException("Endereco ï¿½ obrigatï¿½rio.");
 		}*/
 		this.endereco = endereco;
 	}
