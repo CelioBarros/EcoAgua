@@ -35,8 +35,8 @@ public class CadastroPredioActivity extends Activity {
 				String cidade = etCidade.getText().toString();
 				String bairro = etBairro.getText().toString();
 				String rua = etRua.getText().toString();
-				String numero = etNumero.getText().toString();
-				String cep = etCep.getText().toString();
+				int numero = Integer.parseInt(etNumero.getText().toString());
+				int cep = Integer.parseInt(etCep.getText().toString());
 
 				Endereco e = new Endereco(estado, cidade, bairro, rua, numero,
 						cep);

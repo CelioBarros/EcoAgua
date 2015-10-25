@@ -2,7 +2,7 @@ package com.example.model;
 
 public class Usuario {
 	private static final int TAMANHO_MAXIMO_NOME = 30;
-	private static final int TAMANHO_MINIMO_SENHA = 6;
+	private static final int TAMANHO_MINIMO_SENHA = 2;
 	private static final int TAMANHO_MAXIMO_SENHA = 20;
 	private static final int TAMANHO_MAXIMO_EMAIL = 30;
 	private static final int TAMANHO_MAXIMO_TELEFONE = 11;
