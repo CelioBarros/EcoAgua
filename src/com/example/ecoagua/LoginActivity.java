@@ -28,9 +28,15 @@ public class LoginActivity extends Activity{
 				String senha = etSenha.getText().toString();
 				
 				try {
-					API.login(login, senha);
-					Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-					startActivity(intent);
+					if(API.login(login, senha)){
+						Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+						startActivity(intent);
+					}else{
+						String msg = "Usuário não existe.";
+						String title = "Login";
+						Dialogo.showDialogo(title, msg, LoginActivity.this);
+					}
+					
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

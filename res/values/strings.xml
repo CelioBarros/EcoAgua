@@ -4,7 +4,7 @@
     <string name="app_name">EcoAgua</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-
+		
     <!-- activity_login -->
     <string name="login_name">Login</string>
     <string name="login_senha">Senha</string>

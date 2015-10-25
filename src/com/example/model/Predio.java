@@ -25,8 +25,8 @@ public class Predio extends Usuario implements Comparable<Predio> {
 	 * @param endereco
 	 */
 	public Predio(String nome, String senha, String telefone, String email,
-			Endereco endereco) {
-		super(nome, senha, telefone, email, endereco);
+			Endereco endereco, int id) {
+		super(nome, senha, telefone, email, endereco, id);
 
 	}
 
@@ -45,8 +45,8 @@ public class Predio extends Usuario implements Comparable<Predio> {
 	public Predio(String nome, String senha, String telefone, String email,
 			Endereco endereco, List<Morador> moradores,
 			List<Notificacao> notificacaoes, List<Medicao> medicoes,
-			float gastoMesAtual, int colocacao) {
-		super(nome, senha, telefone, email, endereco);
+			float gastoMesAtual, int colocacao, int id) {
+		super(nome, senha, telefone, email, endereco, id);
 	}
 
 	/**

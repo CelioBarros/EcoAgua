@@ -1,8 +1,12 @@
 package com.example.ecoagua;
 
+import org.json.JSONException;
+
+import com.example.controller.API;
 import com.example.model.Endereco;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -25,6 +29,23 @@ public class CadastroMoradorActivity extends Activity {
 				String senha = etSenha1.getText().toString();
 				String predio = etPredio.getText().toString();
 				String apartamento = etApartamento.getText().toString();
+				
+				try {
+					if(API.cadastraMorador(API.user.getId(), nome, senha, apartamento, nome)){
+						Intent intent = new Intent(CadastroMoradorActivity.this, LoginActivity.class);
+						startActivity(intent);
+					}else{
+						//morador já existe
+						String msg = "Este morador já está cadastrado.";
+						String title = "Cadastrar morador";
+						
+						Dialogo.showDialogo(title, msg, CadastroMoradorActivity.this);
+						
+					}
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		

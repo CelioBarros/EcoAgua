@@ -13,6 +13,7 @@ public class Usuario {
 	private String telefone;
 	private String email;
 	private Endereco endereco;
+	private int id; //id do bd
 	
 	/**
 	 * Construtor de usuario
@@ -22,12 +23,21 @@ public class Usuario {
 	 * @param email
 	 * @param endereco
 	 */
-	public Usuario(String nome, String senha, String telefone, String email, Endereco endereco){
+	public Usuario(String nome, String senha, String telefone, String email, Endereco endereco, int id){
 		setNome(nome);
 		setSenha(senha);
 		setTelefone(telefone);
 		setEmail(email);
 		setEndereco(endereco);
+		setId(id);
+	}
+	
+	public int getId() {
+		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	/**

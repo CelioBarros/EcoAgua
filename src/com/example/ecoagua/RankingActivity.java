@@ -45,8 +45,8 @@ public class RankingActivity extends Activity {
 		String gasto1 = "20";
 		String gasto2 = "30";
 
-		Predio predio1 = new Predio(nome1, nome1, nome1, nome1, null);
-		Predio predio2 = new Predio(nome2, nome1, nome1, nome1, null);
+		Predio predio1 = new Predio(nome1, nome1, nome1, nome1, null, 1);
+		Predio predio2 = new Predio(nome2, nome1, nome1, nome1, null, 2);
 
 		predio1.setColocacao(Integer.parseInt(posicao1));
 		predio2.setColocacao(Integer.parseInt(posicao2));

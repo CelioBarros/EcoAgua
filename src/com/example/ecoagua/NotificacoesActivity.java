@@ -44,8 +44,8 @@ public class NotificacoesActivity extends Activity {
 		String nome1 = "nome1";
 		String nome2 = "nome2";
 
-		Predio predio1 = new Predio(nome1, nome1, nome1, nome1, null);
-		Predio predio2 = new Predio(nome2, nome1, nome1, nome1, null);
+		Predio predio1 = new Predio(nome1, nome1, nome1, nome1, null, 1);
+		Predio predio2 = new Predio(nome2, nome1, nome1, nome1, null, 2);
 
 		Notificacao n1 = new Notificacao(predio1, texto1);
 		Notificacao n2 = new Notificacao(predio2, texto2);

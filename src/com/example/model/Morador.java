@@ -19,8 +19,8 @@ public class Morador extends Usuario {
 	 * @param apartamento
 	 */
 	public Morador(String nome, String senha, String telefone, String email,
-			Endereco endereco, Predio predio, String apartamento) {
-		super(nome, senha, telefone, email, endereco);
+			Endereco endereco, Predio predio, String apartamento, int id) {
+		super(nome, senha, telefone, email, endereco, id);
 		setPredio(predio);
 		setApartamento(apartamento);
 		setNomeUsuario(predio.getNome() + "_" + apartamento);
@@ -42,7 +42,7 @@ public class Morador extends Usuario {
 	 * @param predio
 	 */
 	public void setPredio(Predio predio) {
-		if (predio != null) {
+		if (predio == null) {
 			throw new IllegalArgumentException("Prédio é obrigatório.");
 		}
 		this.predio = predio;
