@@ -3,29 +3,36 @@ package com.example.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Predio extends Usuario{
-	//gastos com agua do mes atual em L
+public class Predio extends Usuario implements Comparable<Predio> {
+	// gastos com agua do mes atual em L
 	private float gastosMesAtual;
-	//colocacao no ranking
+	// colocacao no ranking
 	private int colocacao;
-	//lista de moradores
+	// lista de moradores
 	private List<Morador> moradores;
+	// lista de notificacoes
+	private List<Notificacao> notificacoes;
+	// lista de medicoes
+	private List<Medicao> medicoes;
 
 	/**
 	 * Construtor de predio
+	 * 
 	 * @param nome
 	 * @param senha
 	 * @param telefone
 	 * @param email
 	 * @param endereco
 	 */
-	public Predio(String nome, String senha, String telefone, String email, Endereco endereco) {
+	public Predio(String nome, String senha, String telefone, String email,
+			Endereco endereco) {
 		super(nome, senha, telefone, email, endereco);
-		
+
 	}
-	
+
 	/**
 	 * Construtor com os dados do bd
+	 * 
 	 * @param nome
 	 * @param senha
 	 * @param telefone
@@ -35,16 +42,16 @@ public class Predio extends Usuario{
 	 * @param gastoMesAtual
 	 * @param colocacao
 	 */
-	public Predio(String nome, String senha, String telefone, String email, Endereco endereco, List<Morador> moradores, float gastoMesAtual, int colocacao) {
+	public Predio(String nome, String senha, String telefone, String email,
+			Endereco endereco, List<Morador> moradores,
+			List<Notificacao> notificacaoes, List<Medicao> medicoes,
+			float gastoMesAtual, int colocacao) {
 		super(nome, senha, telefone, email, endereco);
-		this.gastosMesAtual = gastoMesAtual;
-		this.colocacao = colocacao;
-		this.moradores = new ArrayList<Morador>();
-		this.moradores = moradores;
 	}
 
 	/**
 	 * Get gastos
+	 * 
 	 * @return gastos mensais de agua em litros
 	 */
 	public float getGastosMesAtual() {
@@ -53,6 +60,7 @@ public class Predio extends Usuario{
 
 	/**
 	 * Set gastos
+	 * 
 	 * @param gastosMesAtual
 	 */
 	public void setGastosMesAtual(float gastosMesAtual) {
@@ -61,6 +69,7 @@ public class Predio extends Usuario{
 
 	/**
 	 * Get colocacao
+	 * 
 	 * @return colocacao no ranking
 	 */
 	public int getColocacao() {
@@ -69,6 +78,7 @@ public class Predio extends Usuario{
 
 	/**
 	 * Set colocacao
+	 * 
 	 * @param colocacao
 	 */
 	public void setColocacao(int colocacao) {
@@ -83,6 +93,41 @@ public class Predio extends Usuario{
 	}
 
 	public void setMoradores(List<Morador> moradores) {
+		if(moradores == null){
+			throw new IllegalArgumentException("Moradores não podem ser null.");
+		}
 		this.moradores = moradores;
+	}
+
+	public List<Notificacao> getNotificacoes() {
+		return notificacoes;
+	}
+
+	public void setNotificacoes(List<Notificacao> notificacoes) {
+		if(notificacoes == null){
+			throw new IllegalArgumentException("Notificações não podem ser null.");
+		}
+		this.notificacoes = notificacoes;
+	}
+
+	public List<Medicao> getMedicoes() {
+		return medicoes;
+	}
+
+	public void setMedicoes(List<Medicao> medicoes) {
+		if(medicoes == null){
+			throw new IllegalArgumentException("Medições não podem ser null.");
+		}
+		this.medicoes = medicoes;
+	}
+
+	@Override
+	public int compareTo(Predio another) {
+		if (this.getColocacao() < another.getColocacao()) {
+			return -1;
+		} else if (this.getColocacao() > another.getColocacao()) {
+			return 1;
+		}
+		return 0;
 	}
 }

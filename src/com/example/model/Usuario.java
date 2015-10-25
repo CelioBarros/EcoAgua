@@ -2,7 +2,7 @@ package com.example.model;
 
 public class Usuario {
 	private static final int TAMANHO_MAXIMO_NOME = 30;
-	private static final int TAMANHO_MINIMO_SENHA = 6;
+	private static final int TAMANHO_MINIMO_SENHA = 2;
 	private static final int TAMANHO_MAXIMO_SENHA = 20;
 	private static final int TAMANHO_MAXIMO_EMAIL = 30;
 	private static final int TAMANHO_MAXIMO_TELEFONE = 11;
@@ -24,7 +24,7 @@ public class Usuario {
 	 */
 	public Usuario(String nome, String senha, String telefone, String email, Endereco endereco){
 		setNome(nome);
-		setSenha(senha, true);
+		setSenha(senha);
 		setTelefone(telefone);
 		setEmail(email);
 		setEndereco(endereco);
@@ -49,6 +49,8 @@ public class Usuario {
 			} else if (nome.length() > TAMANHO_MAXIMO_NOME) {
 				throw new IllegalArgumentException("Tamanho do nome excede o limite de " + TAMANHO_MAXIMO_NOME + " caracteres.");
 			}
+		}else{
+			throw new IllegalArgumentException("Nome é obrigatório.");
 		}
 		this.apartamento = nome;
 	}
@@ -65,8 +67,8 @@ public class Usuario {
 	 * Set senha
 	 * @param senha
 	 */
-	public void setSenha(String password, boolean encrypted) {
-		if (password != null) {
+	public void setSenha(String password) {
+		/*if (password != null) {
 			if (password.trim().isEmpty()) {
 				throw new IllegalArgumentException("Senha é obrigatória.");
 			} else if (password.length() < TAMANHO_MINIMO_SENHA) {
@@ -74,12 +76,9 @@ public class Usuario {
 			} else if (password.length() > TAMANHO_MAXIMO_SENHA) {
 				throw new IllegalArgumentException("Tamanho da senha excede o limite de " + TAMANHO_MAXIMO_SENHA + " caracteres.");
 			}
-			if (encrypted) {
-				this.senha = PasswordEncrypter.getEncryptedPassword(password);
-			} else {
-				this.senha = password;
-			}
-		}
+		}*/
+		
+		this.senha = password;
 	}
 
 	/**
@@ -95,11 +94,11 @@ public class Usuario {
 	 * @param telefone
 	 */
 	public void setTelefone(String telefone) {
-		if (telefone == null || telefone.trim().isEmpty()) {
+		/*if (telefone == null || telefone.trim().isEmpty()) {
 			throw new IllegalArgumentException("Telefone é obrigatório.");
 		} else if (telefone.length() > TAMANHO_MAXIMO_TELEFONE || !telefone.matches(TELEFONE_REGEX)) {
 			throw new IllegalArgumentException("Telefone inválido.");
-		}
+		}*/
 		this.telefone = telefone;
 	}
 
@@ -116,11 +115,11 @@ public class Usuario {
 	 * @param email
 	 */
 	public void setEmail(String email) {
-		if (email == null || email.trim().isEmpty()) {
+		/*if (email == null || email.trim().isEmpty()) {
 			throw new IllegalArgumentException("E-mail é obrigatório.");
 		} else if (email.length() > TAMANHO_MAXIMO_EMAIL || !email.matches(EMAIL_REGEX)) {
 			throw new IllegalArgumentException("E-mail inválido.");
-		}
+		}*/
 		this.email = email;
 	}
 
@@ -138,9 +137,9 @@ public class Usuario {
 	 * @param endereco
 	 */
 	public void setEndereco(Endereco endereco) {
-		if (endereco != null) {
+		/*if (endereco != null) {
 			throw new IllegalArgumentException("Endereco é obrigatório.");
-		}
+		}*/
 		this.endereco = endereco;
 	}
 }

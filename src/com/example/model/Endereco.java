@@ -20,11 +20,11 @@ public class Endereco {
 	 * @param cidade
 	 * @param bairro
 	 * @param rua
-	 * @param cep
-	 * @param numero
+	 * @param nome12
+	 * @param nome1
 	 */
 	public Endereco(String estado, String cidade, String bairro, String rua,
-			int numero, int cep) {
+			int cep, int numero) {
 		super();
 		setEstado(estado);
 		setCidade(cidade);
@@ -131,7 +131,7 @@ public class Endereco {
 	 * @param cep
 	 */
 	public void setCep(int cep) {
-		if (Integer.toString(cep).length() != TAMANHO_CEP) {
+		if (Integer.toString(cep).length() > TAMANHO_CEP) {
 			throw new IllegalArgumentException("Tamanho do CEP é diferente de " + TAMANHO_CEP + " caracteres.");
 		}
 		this.cep = cep;

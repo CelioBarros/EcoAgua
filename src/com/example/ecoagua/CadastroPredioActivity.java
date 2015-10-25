@@ -35,25 +35,11 @@ public class CadastroPredioActivity extends Activity {
 				String cidade = etCidade.getText().toString();
 				String bairro = etBairro.getText().toString();
 				String rua = etRua.getText().toString();
-				
-				int numero = 0;
-				try{
-					numero = Integer.parseInt(etNumero.getText().toString());
-				}catch (IllegalArgumentException i){
-					
-				}
-				
+				int numero = Integer.parseInt(etNumero.getText().toString());
+				int cep = Integer.parseInt(etCep.getText().toString());
 
-				int cep = 0;
-				try{
-					cep = Integer.parseInt(etCep.getText().toString());
-				}catch (IllegalArgumentException i){
-					
-				}
-				
-				
-				Endereco e = new Endereco(estado, cidade, bairro, rua, numero, cep);
-				e.getBairro();
+				Endereco e = new Endereco(estado, cidade, bairro, rua, numero,
+						cep);
 			}
 		});
 
@@ -65,7 +51,7 @@ public class CadastroPredioActivity extends Activity {
 		setContentView(R.layout.activity_cadastro_predio);
 
 		btnCadastrar = (Button) findViewById(R.id.btn_cadastrar_predio);
-		
+
 		etNome = (EditText) findViewById(R.id.tf_predio_nome);
 		etSenha1 = (EditText) findViewById(R.id.tf_predio_senha1);
 		etTelefone = (EditText) findViewById(R.id.tf_predio_telefone);
@@ -76,7 +62,7 @@ public class CadastroPredioActivity extends Activity {
 		etRua = (EditText) findViewById(R.id.tf_predio_rua);
 		etNumero = (EditText) findViewById(R.id.tf_predio_numero);
 		etCep = (EditText) findViewById(R.id.tf_predio_cep);
-		
+
 		cadastrarPredio();
 	}
 }

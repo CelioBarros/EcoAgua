@@ -30,5 +30,22 @@
     <string name="s_predio_numero">Número</string>
     <string name="s_predio_cep">CEP</string>
     
-
+    <!-- activity_perfil -->
+    <string name="s_perfil_predio_sair">Sair</string>
+    <string name="s_perfil_predio_cadastrar">Cadastrar morador</string>
+    <string name="s_perfil_medicao">Medição:</string>
+    <string name="s_perfil_medicao_cadastrar">Cadastrar</string>
+    
+    <!-- activity_ranking -->
+    <string name="s_ranking">Ranking</string>
+    <string name="s_ranking_posicao">Posição</string>
+    <string name="s_ranking_nome">Nome</string>
+    <string name="s_ranking_gastos">Gastos (L)</string>
+	
+    <!-- activity_notificacao -->
+    <string name="s_notificacao">Notificacões</string>
+    
+    <!-- activity_estatisticas -->
+    <string name="s_estatisticas">Gráfico do consumo de água</string>
+    <string name="s_estatisticas_tempo">Data: </string>
 </resources>
