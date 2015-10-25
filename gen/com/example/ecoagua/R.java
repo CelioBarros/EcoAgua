@@ -148,53 +148,54 @@ public final class R {
         public static final int main=0x7f080000;
     }
     public static final class string {
+        public static final int abrh=0x7f060003;
         public static final int action_settings=0x7f060002;
         public static final int app_name=0x7f060000;
         public static final int hello_world=0x7f060001;
-        public static final int login_cadastrese=0x7f060005;
-        public static final int login_entrar=0x7f060007;
-        public static final int login_esqueceu=0x7f060006;
+        public static final int login_cadastrese=0x7f060006;
+        public static final int login_entrar=0x7f060008;
+        public static final int login_esqueceu=0x7f060007;
         /**  activity_login 
          */
-        public static final int login_name=0x7f060003;
-        public static final int login_senha=0x7f060004;
+        public static final int login_name=0x7f060004;
+        public static final int login_senha=0x7f060005;
         /**  activity_estatisticas 
          */
-        public static final int s_estatisticas=0x7f06001f;
-        public static final int s_estatisticas_tempo=0x7f060020;
-        public static final int s_morador_ap=0x7f06000c;
-        public static final int s_morador_btn_cadastrar=0x7f06000d;
+        public static final int s_estatisticas=0x7f060020;
+        public static final int s_estatisticas_tempo=0x7f060021;
+        public static final int s_morador_ap=0x7f06000d;
+        public static final int s_morador_btn_cadastrar=0x7f06000e;
         /**  activity_cadastro_morador 
          */
-        public static final int s_morador_nome=0x7f060008;
-        public static final int s_morador_predio=0x7f06000b;
-        public static final int s_morador_senha1=0x7f060009;
-        public static final int s_morador_senha2=0x7f06000a;
+        public static final int s_morador_nome=0x7f060009;
+        public static final int s_morador_predio=0x7f06000c;
+        public static final int s_morador_senha1=0x7f06000a;
+        public static final int s_morador_senha2=0x7f06000b;
         /**  activity_notificacao 
          */
-        public static final int s_notificacao=0x7f06001e;
-        public static final int s_perfil_medicao=0x7f060018;
-        public static final int s_perfil_medicao_cadastrar=0x7f060019;
-        public static final int s_perfil_predio_cadastrar=0x7f060017;
+        public static final int s_notificacao=0x7f06001f;
+        public static final int s_perfil_medicao=0x7f060019;
+        public static final int s_perfil_medicao_cadastrar=0x7f06001a;
+        public static final int s_perfil_predio_cadastrar=0x7f060018;
         /**  activity_perfil 
          */
-        public static final int s_perfil_predio_sair=0x7f060016;
-        public static final int s_predio_bairro=0x7f060012;
-        public static final int s_predio_cep=0x7f060015;
-        public static final int s_predio_cidade=0x7f060011;
-        public static final int s_predio_email=0x7f06000f;
-        public static final int s_predio_estado=0x7f060010;
-        public static final int s_predio_numero=0x7f060014;
-        public static final int s_predio_rua=0x7f060013;
+        public static final int s_perfil_predio_sair=0x7f060017;
+        public static final int s_predio_bairro=0x7f060013;
+        public static final int s_predio_cep=0x7f060016;
+        public static final int s_predio_cidade=0x7f060012;
+        public static final int s_predio_email=0x7f060010;
+        public static final int s_predio_estado=0x7f060011;
+        public static final int s_predio_numero=0x7f060015;
+        public static final int s_predio_rua=0x7f060014;
         /**  activity_cadastro_predio 
          */
-        public static final int s_predio_telefone=0x7f06000e;
+        public static final int s_predio_telefone=0x7f06000f;
         /**  activity_ranking 
          */
-        public static final int s_ranking=0x7f06001a;
-        public static final int s_ranking_gastos=0x7f06001d;
-        public static final int s_ranking_nome=0x7f06001c;
-        public static final int s_ranking_posicao=0x7f06001b;
+        public static final int s_ranking=0x7f06001b;
+        public static final int s_ranking_gastos=0x7f06001e;
+        public static final int s_ranking_nome=0x7f06001d;
+        public static final int s_ranking_posicao=0x7f06001c;
     }
     public static final class style {
         public static final int eco=0x7f070000;
