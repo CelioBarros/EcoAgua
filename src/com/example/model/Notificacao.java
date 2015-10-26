@@ -1,5 +1,7 @@
 package com.example.model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class Notificacao implements Comparable<Notificacao>{
@@ -17,6 +19,23 @@ public class Notificacao implements Comparable<Notificacao>{
 		setPredio(predio);
 		data = Calendar.getInstance();
 	}
+	
+	public Notificacao(String texto, String data) {
+		setTexto(texto);
+		
+		Calendar cal = Calendar.getInstance();
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		try {
+			cal.setTime(sdf.parse(data));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		setData(cal);
+	}
 
 	public Predio getPredio() {
 		return predio;
@@ -24,7 +43,7 @@ public class Notificacao implements Comparable<Notificacao>{
 
 	public void setPredio(Predio predio) {
 		if (predio == null ) {
-			throw new IllegalArgumentException("Predio é obrigatório.");
+			throw new IllegalArgumentException("Predio ï¿½ obrigatï¿½rio.");
 		
 	}
 		this.predio = predio;
@@ -36,7 +55,7 @@ public class Notificacao implements Comparable<Notificacao>{
 
 	public void setTexto(String texto) {
 		if (texto == null || texto.trim().isEmpty()) {
-				throw new IllegalArgumentException("Texto é obrigatório.");
+				throw new IllegalArgumentException("Texto ï¿½ obrigatï¿½rio.");
 			
 		}
 		this.texto = texto;

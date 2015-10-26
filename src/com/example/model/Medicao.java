@@ -1,5 +1,7 @@
 package com.example.model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class Medicao {
@@ -11,6 +13,23 @@ public class Medicao {
 	public Medicao(float valor, Predio predio) {
 		setValor(valor);
 		setData(Calendar.getInstance());
+	}
+	
+	public Medicao(float valor, String data) {
+		setValor(valor);
+		
+		Calendar cal = Calendar.getInstance();
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		try {
+			cal.setTime(sdf.parse(data));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		setData(cal);
 	}
 
 	public float getValor() {
@@ -39,7 +58,7 @@ public class Medicao {
 
 	public void setPredio(Predio predio) {
 		if (predio == null) {
-			throw new IllegalArgumentException("Predio é obrigatório.");
+			throw new IllegalArgumentException("Predio ï¿½ obrigatï¿½rio.");
 
 		}
 		this.predio = predio;
