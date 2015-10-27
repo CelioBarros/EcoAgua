@@ -8,6 +8,8 @@ import java.util.Locale;
 import java.util.Random;
 
 import com.example.model.CalendarUtils;
+import com.example.model.Medicao;
+import com.example.model.Usuario;
 import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.LegendRenderer;
@@ -65,7 +67,7 @@ public class EstatisticasActivity extends Activity {
 		seriesSemana = new LineGraphSeries<DataPoint>(
 				criaDataPoints(getQtdDiasSemana()));
 		seriesMes = new LineGraphSeries<DataPoint>(
-				criaDataPoints(getQtdDiasMes(dia)));
+				criaDataPoints(CalendarUtils.getQtdDiasMes(dia)));
 	}
 
 	private void setSelected() {
@@ -97,7 +99,7 @@ public class EstatisticasActivity extends Activity {
 	private void criaGrafico() {
 
 		checkSelected();
-
+		scroll(false);
 		graph.removeAllSeries();
 		graph.addSeries(series);
 		
@@ -109,9 +111,9 @@ public class EstatisticasActivity extends Activity {
 
 		// setNumLabelsX(7);
 
-		xSoInt();
+		//xSoInt();
 
-		scroll();
+		scroll(true);
 	}
 
 	private void setPropriedadesSerie() {
@@ -139,17 +141,25 @@ public class EstatisticasActivity extends Activity {
 	}
 
 	private DataPoint[] criaDataPoints(int qtdDias) {
-		int start = 0;
-		DataPoint[] data = new DataPoint[qtdDias + 1];
-
-		Random gerador = new Random();
+		int start = 1;
+		DataPoint[] data = new DataPoint[qtdDias];
+		
+		List<Medicao> medicoes;
+		if(qtdDias == 7){ //semana
+			medicoes = Usuario.getMedicoesSemana(dia);
+		}else{
+			medicoes = Usuario.getMedicoesMes(dia);
+		}
+		
+		
 
 		// mudar o valor de 1 para os dados de medicao
-		while (start != qtdDias + 1) {
+		while ((start < qtdDias+1) && (start < medicoes.size()+1)) {
 			// substituir o 1 pelo dado da lista de medicoes
-			data[start] = new DataPoint(start, gerador.nextInt(20));
+			data[start-1] = new DataPoint(start, medicoes.get(start-1).getValor());
 			start++;
 		}
+		
 		return data;
 	}
 
@@ -196,6 +206,8 @@ public class EstatisticasActivity extends Activity {
 
 		// teria um atualiza dados
 		setSeries(); // atualiza dias
+		selected = "Semana";
+		setSppinerDefault();
 		criaGrafico(); // atualiza grafico
 	}
 
@@ -231,15 +243,11 @@ public class EstatisticasActivity extends Activity {
 
 	}
 
-	private void scroll() {
+	private void scroll(boolean scroll) {
 		// scroll
-		graph.getViewport().setScrollable(true);
-		graph.getViewport().setScalable(true);
+		graph.getViewport().setScrollable(scroll);
+		graph.getViewport().setScalable(scroll);
 
-	}
-
-	private int getQtdDiasMes(Calendar dia) {
-		return dia.getActualMaximum(Calendar.DAY_OF_MONTH);
 	}
 
 	private void setSppinerTempo() {
@@ -255,5 +263,18 @@ public class EstatisticasActivity extends Activity {
 		tempo.setAdapter(tempoAdapter);
 
 	}
+	
+	private void setSppinerDefault(){
+		String defaultSp = "Semana"; //the value you want the position for
+
+		ArrayAdapter myAdap = (ArrayAdapter) tempo.getAdapter(); //cast to an ArrayAdapter
+
+		int spinnerPosition = myAdap.getPosition(defaultSp);
+
+		//set the default according to value
+		tempo.setSelection(spinnerPosition);
+	}
+
+
 
 }

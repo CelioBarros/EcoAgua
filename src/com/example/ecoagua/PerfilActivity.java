@@ -1,8 +1,15 @@
 package com.example.ecoagua;
 
+import java.util.Calendar;
+
+import org.json.JSONException;
+
 import com.example.controller.API;
+import com.example.model.CalendarUtils;
+import com.example.model.Medicao;
 import com.example.model.Morador;
 import com.example.model.Predio;
+import com.example.model.Usuario;
 
 import android.app.Activity;
 import android.app.TabActivity;
@@ -56,7 +63,7 @@ public class PerfilActivity extends Activity {
 	private void checkUser() {
 		// desaparece se o usuario logado e do tipo morador
 		LinearLayout llMedicao = (LinearLayout) findViewById(R.id.ll_medicao);
-		if (API.user.getClass() == Morador.class) {
+		if (Usuario.isMorador(API.user)) {
 			llMedicao.setVisibility(View.INVISIBLE);
 			btnCadastrarMoradorPerfil.setVisibility(View.INVISIBLE);
 			
@@ -67,12 +74,17 @@ public class PerfilActivity extends Activity {
 					.getEndereco().toString(), morador.getNome(),
 					predio.getTelefone());
 		} else {
-			cadastrarMedicao();
-			cadastrarMorador();
+			
+			
 			Predio predio = (Predio) API.user;
 			setDados(predio.getColocacao(), predio.getEmail(), predio
 					.getEndereco().toString(), predio.getNome(),
 					predio.getTelefone());
+			
+			//Metodos permitidos so pro usuario predio
+			cadastrarMedicao(predio);
+			cadastrarMorador();
+			
 		}
 
 	}
@@ -108,15 +120,34 @@ public class PerfilActivity extends Activity {
 
 	}
 
-	private void cadastrarMedicao() {
+	/**
+	 * Cadastra uma nova medicao
+	 */
+	private void cadastrarMedicao(final Predio predio) {
 		btnCadastrarMedicao.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View arg0) {
 				// chama controller pra cadastrar a medicao
 				String medicao = etMedicao.getText().toString();
-				// Float medicaoF = Float.parseFloat(medicao);
-				// Medicao medicao = new Medicao(medicaoF, predio);
+				
+				try {
+					if(API.cadastraMedicao(predio.getId(), medicao, "L", CalendarUtils.formataDataAPI(Calendar.getInstance()))){
+						API.user.addMedicacao(new Medicao(Float.parseFloat(medicao), predio));
+						
+						String msg = "Medição cadastrada com sucesso.";
+						String title = "Cadastrar medição";
+						Dialogo.showDialogo(title, msg, PerfilActivity.this);
+					}else{
+						String msg = "Não foi possível cadastrar esta medida.";
+						String title = "Cadastrar medição";
+						Dialogo.showDialogo(title, msg, PerfilActivity.this);
+					}
+					
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 

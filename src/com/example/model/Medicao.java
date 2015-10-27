@@ -33,6 +33,16 @@ public class Medicao {
 		setData(cal);
 	}
 
+	public Medicao(Float valor) {
+		setValor(valor);
+	
+	}
+
+	public Medicao(float valor2, Calendar data2) {
+		setValor(valor2);
+		setData(data2);
+	}
+
 	public float getValor() {
 		return valor;
 	}

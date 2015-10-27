@@ -27,5 +27,13 @@ public class CalendarUtils {
 	public static String getDataFormatadaSemHoras(Calendar dataCriacao) {
 		return String.format(Locale.getDefault(), "%02d/%02d/%d", dataCriacao.get(Calendar.DAY_OF_MONTH), dataCriacao.get(Calendar.MONTH)+1, dataCriacao.get(Calendar.YEAR));
 	}
+	
+	public static String formataDataAPI(Calendar dataCriacao) {
+		return String.format(Locale.getDefault(), "%02d-%02d-%d", dataCriacao.get(Calendar.YEAR), dataCriacao.get(Calendar.MONTH)+1, dataCriacao.get(Calendar.DAY_OF_MONTH));
+	}
+	
+	public static int getQtdDiasMes(Calendar data) {
+		return data.getActualMaximum(Calendar.DAY_OF_MONTH);
+	}
 
 }
