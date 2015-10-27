@@ -1,6 +1,9 @@
 package com.example.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
+import android.net.ParseException;
 
 public class Medicao {
 	private float valor;
@@ -11,6 +14,23 @@ public class Medicao {
 	public Medicao(float valor, Predio predio) {
 		setValor(valor);
 		setData(Calendar.getInstance());
+	}
+	
+	public Medicao(float valor, String data, Predio predio) {
+		setValor(valor);
+		
+		Calendar cal = Calendar.getInstance();
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		try {
+				cal.setTime(sdf.parse(data));
+		} catch (java.text.ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		setData(cal);
 	}
 
 	public float getValor() {

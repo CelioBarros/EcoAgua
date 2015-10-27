@@ -431,6 +431,197 @@ public class API {
 
 		return cadastro;
 	}
+	
+	public static ArrayList<Acude> Acudes() throws JSONException{
+		ArrayList<Acude> Acudes = new ArrayList<Acude>();
+		String url, response;
+
+		url = DOMAIN + "/info_acudes";
+
+		response = GET(url);
+		//System.out.println(response);
+		JSONArray array = new JSONArray(response);
+
+		String nome, volume, data;
+		int id;
+		for (int i = 0; i < array.length(); i++) {
+			nome = array.getJSONObject(i).getString("nome_acude");
+			volume = array.getJSONObject(i).getString("volume");
+			data = array.getJSONObject(i).getString("data");
+			id = array.getJSONObject(i).getInt("id");
+
+			Acudes.add(new Acude(nome,volume,data,id));
+
+
+			//System.out.println(i);
+		}
+
+		return Acudes;
+
+	}
+
+	public static boolean addAcudes(String nome, String volume, String data) throws JSONException{
+		String url, response;
+		boolean result;
+
+		url = DOMAIN + "/add_info_acudes/" + nome + "/" + volume + "/" + data;
+
+		response = GET(url);
+
+		JSONArray array = new JSONArray(response);
+		JSONObject obj = array.getJSONObject(0);
+
+		result = obj.getBoolean("insert_info");
+		System.out.println(result);
+
+		return result;
+
+	}
+
+	public static boolean cadastraMedicao(int idPredio, String quantidade, String unidade, String data) throws JSONException{
+		boolean result;
+		String url, response;
+
+		url = DOMAIN + "/cadastra_medicao/" + idPredio + "/" + quantidade + "/" + unidade + "/" + data;
+
+		response = GET(url);
+
+		JSONArray array = new JSONArray(response);
+		JSONObject obj = array.getJSONObject(0);
+
+		result = obj.getBoolean("cadastra_medicao");
+
+		//System.out.println("medicao " + result);
+
+
+		return result;
+	}
+
+	public static ArrayList<Medicao> getMedicoesPorPredio(int idPredio) throws JSONException{
+		ArrayList<Medicao> medicoes = new ArrayList<Medicao>();
+
+		String url,response;
+
+		url = DOMAIN + "/medicao/" + idPredio;
+
+		response  = GET(url);
+
+		JSONArray array = new JSONArray(response);
+
+		String unidade, quantidade, data;
+		for (int i = 0; i < array.length(); i++) {
+
+			//unidade = array.getJSONObject(i).getString("unidade");
+
+			quantidade = "" + array.getJSONObject(i).getDouble("quantidade");
+
+			data = array.getJSONObject(i).getString("data");
+
+			medicoes.add(new Medicao( Float.parseFloat(quantidade),data, infoPredio(idPredio)));
+
+			//System.out.println("Medicoes: " + i);
+		}
+
+
+
+		return medicoes;
+	}
+
+	public static ArrayList<Medicao> getMedicoesPorData(int idPredio, String data_consulta) throws JSONException{
+		ArrayList<Medicao> medicoes = new ArrayList<Medicao>();
+
+		String url,response;
+
+		url = DOMAIN + "/medicao/" + idPredio + "/" + data_consulta;
+
+		response  = GET(url);
+
+		JSONArray array = new JSONArray(response);
+
+		String unidade, quantidade, data;
+		for (int i = 0; i < array.length(); i++) {
+
+			//unidade = array.getJSONObject(i).getString("unidade");
+
+			quantidade = "" + array.getJSONObject(i).getDouble("quantidade");
+
+			data = array.getJSONObject(i).getString("data");
+
+			medicoes.add(new Medicao( Float.parseFloat(quantidade),data, infoPredio(idPredio)));
+
+			//System.out.println("Medicoes: " + i);
+		}
+
+
+		return medicoes;
+	}
+
+	public static boolean cadastraNotificacoes(int idPredio, String texto, String data) throws JSONException{
+		boolean result;
+		String url, response;
+
+		url = DOMAIN + "/cadastra_notificacoes/" + idPredio + "/" + texto + "/" +  data;
+
+		response = GET(url);
+
+		JSONArray array = new JSONArray(response);
+		JSONObject obj = array.getJSONObject(0);
+
+		result = obj.getBoolean("cadastra_notificacoes");
+
+		//System.out.println("Cadastra notificacoes " + result);
+
+
+		return result;
+	}
+
+	public static ArrayList<Notificacao> getNotificacoesPorPredio(int idPredio) throws JSONException{
+		ArrayList<Notificacao> notificacoes = new ArrayList<Notificacao>();
+		String url, response;
+
+		url = DOMAIN + "/notificacoes/" + idPredio;
+
+		response = GET(url);
+
+		JSONArray array = new JSONArray(response);
+
+		String data,texto;
+		for (int i = 0; i < array.length(); i++) {
+			data = array.getJSONObject(i).getString("data");
+			texto = array.getJSONObject(i).getString("texto");
+
+			notificacoes.add(new Notificacao(texto, data));
+			//System.out.println("Notificacoes" + i);
+		}
+
+
+
+		return notificacoes;
+	}
+
+	public static ArrayList<Notificacao> getNotificacoesPorData(int idPredio, String data_consulta) throws JSONException{
+		ArrayList<Notificacao> notificacoes = new ArrayList<Notificacao>();
+		String url, response;
+
+		url = DOMAIN + "/notificacoes/" + idPredio + "/" + data_consulta;
+
+		response = GET(url);
+
+		JSONArray array = new JSONArray(response);
+
+		String data,texto;
+		for (int i = 0; i < array.length(); i++) {
+			data = array.getJSONObject(i).getString("data");
+			texto = array.getJSONObject(i).getString("texto");
+
+			notificacoes.add(new Notificacao(texto, data));
+			//System.out.println("Notificacoes" + i);
+		}
+
+
+
+		return notificacoes;
+	}
 
 	/**
 	 * 
