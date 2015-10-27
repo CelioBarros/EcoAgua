@@ -39,26 +39,16 @@ public class CadastroPredioActivity extends Activity {
 				String cidade = etCidade.getText().toString();
 				String bairro = etBairro.getText().toString();
 				String rua = etRua.getText().toString();
-				int numero = Integer.parseInt(etNumero.getText().toString());
+				String numero = etNumero.getText().toString();
 				int cep = Integer.parseInt(etCep.getText().toString());
 
 				Endereco e = new Endereco(estado, cidade, bairro, rua, numero,
 						cep);
 				
 				try {
-					if(API.cadastraPredio(nome, senha, telefone, email, estado, cidade, bairro, rua, numero, cep, nome)){
-						Intent intent = new Intent(CadastroPredioActivity.this, LoginActivity.class);
-						startActivity(intent);
-					}else{
-						//morador já existe
-						String msg = "Este prédio já está cadastrado.";
-						String title = "Cadastrar prédio";
-						
-						Dialogo.showDialogo(title, msg, CadastroPredioActivity.this);
-						
-					}
-					
-					
+					API.cadastraPredio(nome, senha, telefone, email, estado, cidade, bairro, rua, numero, cep, nome);
+					Intent intent = new Intent(CadastroPredioActivity.this, MainActivity.class);
+					startActivity(intent);
 				} catch (JSONException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
