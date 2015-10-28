@@ -8,10 +8,13 @@ import java.util.List;
 import org.json.JSONException;
 
 import com.example.controller.API;
+import com.example.ecoagua.R;
+import com.example.ecoagua.grafico.Semana;
 import com.example.model.Morador;
 import com.example.model.Predio;
 import com.example.model.Ranking;
 import com.example.model.Usuario;
+
 
 import android.app.Activity;
 import android.content.Intent;

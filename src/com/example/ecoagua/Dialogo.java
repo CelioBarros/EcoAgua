@@ -1,5 +1,7 @@
 package com.example.ecoagua;
 
+import com.example.ecoagua.R;
+
 import android.app.AlertDialog;
 import android.app.DialogFragment;
 import android.content.Context;

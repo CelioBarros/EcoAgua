@@ -9,6 +9,7 @@ import org.json.JSONException;
 
 import com.example.controller.API;
 
+
 public class Ranking {
 	private static List<Predio> predios;
 	

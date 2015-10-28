@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import com.example.controller.API;
 import com.example.ecoagua.R;
 
+
 public class Usuario {
 	private static final int TAMANHO_MAXIMO_NOME = 30;
 	private static final int TAMANHO_MINIMO_SENHA = 2;
@@ -30,7 +31,7 @@ public class Usuario {
 	// lista de notificacoes
 	private List<Notificacao> notificacoes;
 	// lista de medicoes
-	private static List<Medicao> medicoes;
+	private List<Medicao> medicoes;
 	// colocacao no ranking
 	private int colocacao;
 
@@ -65,7 +66,7 @@ public class Usuario {
 		this.notificacoes = notificacoes;
 	}
 
-	public static List<Medicao> getMedicoes() {
+	public List<Medicao> getMedicoes() {
 		return medicoes;
 	}
 
@@ -80,11 +81,10 @@ public class Usuario {
 		medicoes.add(medicao);
 	}
 
-	public static Medicao getMedicaoPorData(Calendar data) {
+	public Medicao getMedicaoPorData(Calendar data) {
 		for (Medicao m : getMedicoes()) {
 			if (CalendarUtils.formataDataAPI(m.getData()).equals(
 					CalendarUtils.formataDataAPI(data))) {
-				m.getClass();
 				return m;
 			}
 		}
@@ -98,7 +98,7 @@ public class Usuario {
 	 * @param data
 	 * @return medicoes por mes
 	 */
-	public static List<Medicao> getMedicoesMes(Calendar data) {
+	public List<Medicao> getMedicoesMes(Calendar data) {
 		List<Medicao> m = new ArrayList<Medicao>();
 
 		Calendar temp = Calendar.getInstance();
@@ -116,14 +116,14 @@ public class Usuario {
 
 		return m;
 	}
-
+	
 	/**
 	 * Get das medicoes por semana
 	 * 
 	 * @param data
 	 * @return medicoes da semana
 	 */
-	public static List<Medicao> getMedicoesSemana(Calendar data) {
+	public List<Medicao> getMedicoesSemana(Calendar data) {
 		List<Medicao> m = new ArrayList<Medicao>();
 
 		Calendar temp = Calendar.getInstance();
@@ -143,7 +143,7 @@ public class Usuario {
 
 		return m;
 	}
-
+	
 	public void addNotificacao(Notificacao notificacao) {
 		notificacoes.add(notificacao);
 	}

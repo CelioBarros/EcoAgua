@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import com.example.ecoagua.R;
 import com.example.model.Notificacao;
 import com.example.model.Predio;
 import com.example.scrollable.NotificacoesList;
