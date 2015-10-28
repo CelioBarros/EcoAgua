@@ -1,12 +1,16 @@
 package com.example.ecoagua;
 
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 import org.json.JSONException;
 
 import com.example.controller.API;
 import com.example.model.Morador;
 import com.example.model.Predio;
+import com.example.model.Ranking;
 import com.example.model.Usuario;
 
 import android.app.Activity;
@@ -36,6 +40,9 @@ public class LoginActivity extends Activity{
 				try {
 					if(API.login(login, senha)){
 						setMedicoes();
+						setRanking();
+						setColocacao();
+						
 						Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 						startActivity(intent);
 					}else{
@@ -52,12 +59,42 @@ public class LoginActivity extends Activity{
 			}
 
 			/**
+			 * Set a colocacao da lista de predios baseado no ranking
+			 */
+			private void setColocacao() {
+				for(int i=0; i<Ranking.getPredios().size(); i++){
+					if(Ranking.getPredios().get(i).getId() == API.user.getId()){
+						API.user.setColocacao(i+1);
+					}
+
+					Ranking.getPredios().get(i).setColocacao(i+1);
+					
+				}
+				
+			}
+
+			/**
+			 * Set the ranking list of predios
+			 */
+			private void setRanking(){
+				List<Predio> predios = null;
+				try {
+					predios = API.listaPredios();
+					Ranking.rankeia(predios);
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+
+			/**
 			 * Assim que confirmado o login, seta as medicoes dependendo do tipo de usuario
+			 * @throws JSONException 
 			 */
 			private void setMedicoes() {
 				try {
 					API.user.setMedicoes(API.getMedicoesPorPredio(API.user.getId()));
-					System.out.println("oi");
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

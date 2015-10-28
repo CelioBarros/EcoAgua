@@ -181,7 +181,7 @@ public class API {
 			//numero = 1;
 
 			endereco = new Endereco(estado, cidade, bairro, rua, numero, cep);
-			predio = new Predio(nome, senha, telefone, email, endereco);
+			predio = new Predio(nome, senha, telefone, email, endereco, idPredio);
 
 			System.out.println(estado);
 
@@ -296,7 +296,7 @@ public class API {
 	 */
 	public static boolean cadastraPredio(String nome, String senha,
 			String telefone, String email, String estado, String cidade,
-			String bairro, String rua, int numero, int cep, String login)
+			String bairro, String rua, String numero, int cep, String login)
 					throws JSONException {
 		boolean cadastro = false;
 
@@ -630,7 +630,7 @@ public class API {
 
 		String url, response;
 
-		url = DOMAIN + "/lista_predios/";
+		url = DOMAIN + "/lista_predios";
 
 		response = GET(url);
 
@@ -640,22 +640,24 @@ public class API {
 
 
 		String senha, nome, bairro, cidade, rua, numero, telefone, estado, email;
-		int cep;
+		int cep, id;
 
 		for (int i = 0; i < listaPredios.length(); i++) {
+			JSONObject predioObj = listaPredios.getJSONObject(i);
+			
+			senha = predioObj.getString("senha");
+			nome = predioObj.getString("nome");
+			bairro = predioObj.getString("bairro");
+			cidade = predioObj.getString("cidade");
+			rua = predioObj.getString("rua");
+			numero = predioObj.getString("numero");
+			telefone = predioObj.getString("telefone");
+			estado = predioObj.getString("estado");
+			email = predioObj.getString("email");
+			cep = predioObj.getInt("cep");
+			id = predioObj.getInt("id_predio");
 
-			senha = array.getJSONObject(i).getString("senha");
-			nome = array.getJSONObject(i).getString("nome");
-			bairro = array.getJSONObject(i).getString("bairro");
-			cidade = array.getJSONObject(i).getString("cidade");
-			rua = array.getJSONObject(i).getString("rua");
-			numero = array.getJSONObject(i).getString("numero");
-			telefone = array.getJSONObject(i).getString("telefone");
-			estado = array.getJSONObject(i).getString("estado");
-			email = array.getJSONObject(i).getString("email");
-			cep = array.getJSONObject(i).getInt("cep");
-
-			predios.add(new Predio(nome,senha, telefone, email,new Endereco(estado, cidade, bairro, rua, numero, cep)));
+			predios.add(new Predio(nome,senha, telefone, email,new Endereco(estado, cidade, bairro, rua, numero, cep), id));
 
 		}
 

@@ -89,7 +89,7 @@ public class Usuario {
 			}
 		}
 
-		return new Medicao((float) -1.0, data);
+		return new Medicao((float) 0.0, data);
 	}
 
 	/**
@@ -340,6 +340,16 @@ public class Usuario {
 		}
 		return isPredio;
 
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if(obj == null || this.getClass() != obj.getClass()) {
+			return false;
+		}
+		
+		Usuario other = (Usuario) obj;
+		return this.getId() == other.getId();
 	}
 
 }

@@ -75,9 +75,9 @@ public class Predio extends Usuario implements Comparable<Predio> {
 	
 	@Override
 	public int compareTo(Predio another) {
-		if (this.getColocacao() < another.getColocacao()) {
+		if (this.getGastosMesAtual() < another.getGastosMesAtual()) {
 			return -1;
-		} else if (this.getColocacao() > another.getColocacao()) {
+		} else if (this.getGastosMesAtual() > another.getGastosMesAtual()) {
 			return 1;
 		}
 		return 0;

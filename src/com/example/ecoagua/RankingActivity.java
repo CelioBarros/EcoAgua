@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.example.model.Endereco;
 import com.example.model.Predio;
+import com.example.model.Ranking;
 import com.example.scrollable.RankingList;
 
 import android.app.Activity;
@@ -24,13 +25,13 @@ public class RankingActivity extends Activity {
 		setContentView(R.layout.activity_ranking);
 
 		list = (ListView) findViewById(R.id.lvExpRanking);
-		itens = new ArrayList<Predio>();
 
-		// so pra testar
+		/*// so pra testar
 		criaItensTest();
 		// necessario fazer o sorte antes
-		Collections.sort(itens);
-		rankingList = new RankingList(this, itens, list);
+		Collections.sort(itens);*/
+		
+		rankingList = new RankingList(this, Ranking.getPredios(), list);
 		list.setAdapter(rankingList);
 	}
 
