@@ -559,7 +559,7 @@ public class API {
 		boolean result;
 		String url, response;
 
-		url = DOMAIN + "/cadastra_notificacoes/" + idPredio + "/" + texto + "/" +  data;
+		url = DOMAIN + "/cadastra_notificacoes/" + idPredio + "/" + encodeString(texto) + "/" +  data;
 
 		response = GET(url);
 
@@ -585,19 +585,23 @@ public class API {
 		JSONArray array = new JSONArray(response);
 
 		String data,texto;
+		Predio predio = infoPredio(idPredio);
+		
 		for (int i = 0; i < array.length(); i++) {
 			data = array.getJSONObject(i).getString("data");
-			texto = array.getJSONObject(i).getString("texto");
+			texto = decodeString(array.getJSONObject(i).getString("texto"));
 
-			notificacoes.add(new Notificacao(texto, data));
+			notificacoes.add(new Notificacao(texto, data, predio));
 			//System.out.println("Notificacoes" + i);
 		}
 
 
-
+		Log.d("get notificacoes", "saiu de notificacoes " + array.length());
 		return notificacoes;
 	}
 
+	
+	
 	public static ArrayList<Notificacao> getNotificacoesPorData(int idPredio, String data_consulta) throws JSONException{
 		ArrayList<Notificacao> notificacoes = new ArrayList<Notificacao>();
 		String url, response;
@@ -607,13 +611,13 @@ public class API {
 		response = GET(url);
 
 		JSONArray array = new JSONArray(response);
-
+		Predio predio = infoPredio(idPredio);
 		String data,texto;
 		for (int i = 0; i < array.length(); i++) {
 			data = array.getJSONObject(i).getString("data");
 			texto = array.getJSONObject(i).getString("texto");
 
-			notificacoes.add(new Notificacao(texto, data));
+			notificacoes.add(new Notificacao(texto, data,predio));
 			//System.out.println("Notificacoes" + i);
 		}
 
@@ -621,8 +625,6 @@ public class API {
 
 		return notificacoes;
 	}
-
-
 
 	public static ArrayList<Predio> listaPredios() throws JSONException{
 
@@ -697,6 +699,23 @@ public class API {
 		Log.d("GET resultado", resultado);
 
 		return resultado;
+	}
+	
+
+	private static String encodeString(String texto){
+		String result;
+		
+		result = texto.replace(" ", "%20");
+		
+		return result;
+	}
+	
+	private static String decodeString(String texto){
+		String result;
+		
+		result = texto.replace("%20", " ");
+		
+		return result;
 	}
 
 }
