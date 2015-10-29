@@ -20,7 +20,7 @@ public class Notificacao implements Comparable<Notificacao>{
 		data = Calendar.getInstance();
 	}
 	
-	public Notificacao(String texto, String data) {
+	public Notificacao(String texto, String data, Predio predio) {
 		setTexto(texto);
 		
 		Calendar cal = Calendar.getInstance();
@@ -35,6 +35,7 @@ public class Notificacao implements Comparable<Notificacao>{
 		}
 		
 		setData(cal);
+		setPredio(predio);
 	}
 
 	public Predio getPredio() {

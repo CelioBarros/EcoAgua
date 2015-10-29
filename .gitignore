@@ -4,3 +4,6 @@ project.properties
 .classpath
 .metadata
 proguard-project.txt
+/bin/*
+bin/*
+/bin
