@@ -7,7 +7,9 @@ import com.example.model.*;
 import android.content.Intent;
 import android.util.Log;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.concurrent.ExecutionException;
 
 import org.json.*;
@@ -599,8 +601,6 @@ public class API {
 		Log.d("get notificacoes", "saiu de notificacoes " + array.length());
 		return notificacoes;
 	}
-
-	
 	
 	public static ArrayList<Notificacao> getNotificacoesPorData(int idPredio, String data_consulta) throws JSONException{
 		ArrayList<Notificacao> notificacoes = new ArrayList<Notificacao>();
@@ -668,8 +668,6 @@ public class API {
 
 	}
 
-
-
 	/**
 	 * 
 	 * Recebe uma url e gera uma requiciao HTTP GET, retorna o resultado dessa
@@ -701,7 +699,6 @@ public class API {
 		return resultado;
 	}
 	
-
 	private static String encodeString(String texto){
 		String result;
 		
@@ -718,4 +715,99 @@ public class API {
 		return result;
 	}
 
+	
+	private static Calendar ultimoDomingo(Calendar dia){
+		Calendar domingo = (Calendar) dia.clone();
+		
+		while(true){
+			
+			if(domingo.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY){
+				break;
+			}
+			
+			domingo.roll(Calendar.DAY_OF_MONTH, false);
+		}
+		
+		
+		return domingo;
+	}
+	
+	private static ArrayList<String> diasDaUltimaSemana(Calendar dia){
+		//Calendar dia = Calendar.getInstance();
+		Calendar ultimoDomingo = ultimoDomingo(dia);
+		
+		ArrayList<String> dias = new ArrayList<String>();
+		String data = "";
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		while(true){
+			data = sdf.format(ultimoDomingo.getTime()).toString();
+			System.out.println(data);
+			
+			dias.add(data);
+			
+			if(ultimoDomingo.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY){
+				break;
+			}
+			
+			ultimoDomingo.roll(Calendar.DAY_OF_YEAR, false);
+			
+		}
+		
+		
+		return dias;
+	}
+
+	private static float somaValoresMedicoes(ArrayList<Medicao> medicoes){
+		float result = 0;
+		
+		for (Medicao medicao : medicoes) {
+			result += medicao.getValor();
+		}
+		
+		
+		return result;		
+	}
+
+	public static float resultadoMedicoesSemanaPassada(int idPredio){
+		float result = 0;
+		Calendar ultimoDomingo = ultimoDomingo(Calendar.getInstance());
+		ArrayList<String> diasDaSemanaPassada = diasDaUltimaSemana(ultimoDomingo);
+		
+		for (String dia : diasDaSemanaPassada) {
+			
+			try {
+				result += somaValoresMedicoes(getMedicoesPorData(idPredio, dia));
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return result;	
+	}
+
+	public static float resultadoMedicoesSemanaTrasada(int idPredio){
+		float result = 0;
+		Calendar ultimoDomingo = ultimoDomingo(Calendar.getInstance());
+		
+		ultimoDomingo.roll(Calendar.DAY_OF_YEAR, false); // Volta 1 dia pra pegar a semana trasada
+		Calendar domingoTrasado = ultimoDomingo(ultimoDomingo);
+		
+		ArrayList<String> diasDaSemanaPassada = diasDaUltimaSemana(domingoTrasado);
+		
+		for (String dia : diasDaSemanaPassada) {
+			
+			try {
+				result += somaValoresMedicoes(getMedicoesPorData(idPredio, dia));
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return result;	
+	}
+	
+	
 }
