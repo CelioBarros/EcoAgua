@@ -3,7 +3,9 @@ package com.example.ecoagua;
 import org.json.JSONException;
 
 import com.example.controller.API;
+import com.example.ecoagua.R;
 import com.example.model.Endereco;
+
 
 import android.app.Activity;
 import android.content.Intent;

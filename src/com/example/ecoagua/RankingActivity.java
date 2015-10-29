@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.example.ecoagua.R;
 import com.example.model.Endereco;
 import com.example.model.Predio;
 import com.example.model.Ranking;
