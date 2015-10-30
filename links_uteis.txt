@@ -14,7 +14,7 @@ http://aguaeco-celiobarros.rhcloud.com/atualiza_morador/<id_morador>/<id_predio>
 
 http://aguaeco-celiobarros.rhcloud.com/info_acudes
 
-http://aguaeco-celiobarros.rhcloud.com/add_info_acudes/<nome_acude>/<volume>/<data>
+http://aguaeco-celiobarros.rhcloud.com/add_info_acudes/<nome_acude>/<volume>/<capacidade>/<data>
 
 http://aguaeco-celiobarros.rhcloud.com/cadastra_medicao/<id_predio>/<quantidade>/<unidade>/<data>
 
