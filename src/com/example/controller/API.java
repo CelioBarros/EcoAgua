@@ -668,6 +668,51 @@ public class API {
 		return predios;
 
 	}
+	
+	public static ArrayList<String> listaAcudes() throws JSONException{
+		ArrayList<String> nomes = new ArrayList<String>();
+		String url, response;
+		
+		url = DOMAIN + "/lista_acudes";
+		
+		response = GET(url);
+		
+		JSONArray array = new JSONArray(response);
+		JSONObject obj;
+		for (int i = 0; i < array.length(); i++) {
+			obj = array.getJSONObject(i);
+			nomes.add(obj.getString("nome_acude"));
+		}
+		
+		
+		return nomes;
+	}
+	
+	public static ArrayList<Acude> info_acude_ano(String nome, String ano) throws JSONException{
+		ArrayList<Acude> acudes = new ArrayList<Acude>();
+		String url, response;
+		
+		url = DOMAIN + "/info_acude_ano/" + nome + "/" + ano; 
+				
+		response = GET(url);
+		JSONArray array = new JSONArray(response);
+
+		JSONObject obj;
+		String volume, data;
+		int id;
+		for (int i = 0; i < array.length(); i++) {
+			obj = array.getJSONObject(i);
+			
+			volume = obj.getString("volume");
+			data = obj.getString("data");
+			id = obj.getInt("id");
+			acudes.add(new Acude(nome,volume,data,id));
+		
+		}
+		
+		
+		return acudes;
+	}
 
 	/**
 	 * 
