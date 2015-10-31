@@ -12,6 +12,11 @@ public class Acude {
 		setData(data);
 	}
 
+	public Acude(String volume, String data) {
+		setVolume(volume);
+		setData(data);
+	}
+
 	public String getNome() {
 		return nome;
 	}
@@ -43,6 +48,4 @@ public class Acude {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-	
 }

@@ -38,9 +38,9 @@ public class Medicao {
 	
 	}
 
-	public Medicao(float valor2, Calendar data2) {
-		setValor(valor2);
-		setData(data2);
+	public Medicao(float valor, Calendar data) {
+		setValor(valor);
+		setData(data);
 	}
 
 	public float getValor() {

@@ -11,6 +11,7 @@ import com.example.controller.API;
 import com.example.ecoagua.R;
 import com.example.ecoagua.grafico.SemanaActivity;
 import com.example.model.Acude;
+import com.example.model.Medicao;
 import com.example.model.Morador;
 import com.example.model.Predio;
 import com.example.model.Ranking;
@@ -33,7 +34,7 @@ public class LoginActivity extends Activity{
 	private EditText etLogin;
 	private EditText etSenha;
 	private View loading;
-	public static Acude acude;
+	public static List<Medicao> medicoesAcude;
 	
 	private void logar() {
 		btnEntrar.setOnClickListener(new OnClickListener() {
@@ -47,9 +48,9 @@ public class LoginActivity extends Activity{
 				try {
 					if(API.login(login, senha)){
 						
-						//setMedicoes();
-						//setRanking();
-						//setColocacao();
+						setMedicoes();
+						setRanking();
+						setColocacao();
 						setDadosAcude();
 						
 						Intent intent = new Intent(LoginActivity.this, MainActivity.class);
@@ -68,7 +69,12 @@ public class LoginActivity extends Activity{
 			}
 
 			private void setDadosAcude() {
-				
+				try {
+					medicoesAcude = API.info_acude_ano("Epitacio Pessoa", "2015");
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				
 			}
 

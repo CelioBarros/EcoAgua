@@ -51,7 +51,8 @@
     <string name="s_estatisticas_gacude">Gráfico do açude de Boqueirão</string>
     <string name="s_estatisticas_mensal">Mensal</string>
     <string name="s_estatisticas_semanal">Semanal</string>
-    <string name="s_estatisticas_acude_volume">Volume</string>
+    <string name="s_estatisticas_acude_volume">Volume (%)</string>
+    <string name="s_estatisticas_acude_volume_atual">Volume (L)</string>
     <string name="s_estatisticas_previsao">Previsão</string>
     <string name="s_estatisticas_tempo">Data: </string>
 </resources>

@@ -23,7 +23,7 @@ import android.view.View.OnClickListener;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
-public class MesActivity extends Activity{
+public class MesActivity extends Activity {
 	private Calendar dia;
 	private GraphView graph;
 	private EditText etData;
@@ -44,9 +44,9 @@ public class MesActivity extends Activity{
 		setData();
 	}
 
-	private void criaGrafico(){
+	private void criaGrafico() {
 		Serie serie = new Serie();
-		
+
 		String titulo = "Consumo (L)";
 		int cor = Color.BLUE;
 		boolean drawDataPoints = true;
@@ -55,23 +55,26 @@ public class MesActivity extends Activity{
 		int numX = CalendarUtils.getQtdDiasMes(dia);
 		Context context = MesActivity.this;
 		boolean showTextOnPointClick = true;
-				 
-		series = serie.criaSerie(titulo, cor, drawDataPoints, raio, dia, medicoes, numX, context, showTextOnPointClick, false);
-		
-		
+		String legendaT = "Consumo: ";
+		String unidade = "L";
+
+		series = serie.criaSerie(titulo, cor, drawDataPoints, raio, dia,
+				medicoes, numX, context, showTextOnPointClick, legendaT,
+				unidade);
+
 		Grafico grafico = new Grafico();
-		
+
 		boolean legenda = true;
 		boolean scroll = true;
-		
+
 		boolean comLabels = false;
 		int numLabels = 7;
 		boolean soIntEmX = false;
 
 		String tituloX = "Dia";
-		String tituloY = "Consumo (L)";
-		
-		grafico.criaGrafico(graph, series, legenda, comLabels, numLabels, soIntEmX, scroll, tituloX, tituloY);
+
+		grafico.criaGrafico(graph, series, legenda, comLabels, numLabels,
+				soIntEmX, scroll, tituloX, titulo);
 	}
 
 	//
@@ -95,9 +98,9 @@ public class MesActivity extends Activity{
 
 			@Override
 			public void onClick(View v) {
-				new DatePickerDialog(MesActivity.this, date, dia.get(Calendar.YEAR),
-						dia.get(Calendar.MONTH), dia.get(Calendar.DAY_OF_MONTH))
-						.show();
+				new DatePickerDialog(MesActivity.this, date, dia
+						.get(Calendar.YEAR), dia.get(Calendar.MONTH), dia
+						.get(Calendar.DAY_OF_MONTH)).show();
 			}
 		});
 

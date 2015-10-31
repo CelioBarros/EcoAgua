@@ -2,6 +2,7 @@ package com.example.ecoagua;
 
 import com.example.ecoagua.R;
 import com.example.ecoagua.grafico.AcudeVolumeActivity;
+import com.example.ecoagua.grafico.AcudeVolumeAtualActivity;
 import com.example.ecoagua.grafico.MesActivity;
 import com.example.ecoagua.grafico.SemanaActivity;
 
@@ -15,6 +16,7 @@ public class EstatisticasActivity extends Activity {
 	private Button btnMensal;
 	private Button btnSemanal;
 	private Button btnVolume;
+	private Button btnVolumeAtual;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -24,10 +26,12 @@ public class EstatisticasActivity extends Activity {
 		btnMensal = (Button) findViewById(R.id.btn_grafico_mensal);
 		btnSemanal = (Button) findViewById(R.id.btn_grafico_semanal);
 		btnVolume = (Button) findViewById(R.id.btn_grafico_acude_volume);
+		btnVolumeAtual = (Button) findViewById(R.id.btn_grafico_acude_volume_atual);
 		
 		verGraficoConsumoMensal();
 		verGraficoConsumoSemanal();
 		verGraficoAcudeVolume();
+		verGraficoAcudeVolumeAtual();
 	}
 
 	private void verGraficoAcudeVolume() {
@@ -36,6 +40,19 @@ public class EstatisticasActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(EstatisticasActivity.this, AcudeVolumeActivity.class);
+				startActivity(intent);
+				
+			}
+		});
+		
+	}
+	
+	private void verGraficoAcudeVolumeAtual() {
+		btnVolumeAtual.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(EstatisticasActivity.this, AcudeVolumeAtualActivity.class);
 				startActivity(intent);
 				
 			}

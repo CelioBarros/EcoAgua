@@ -4,10 +4,10 @@ import com.example.ecoagua.LoginActivity;
 import com.example.ecoagua.MainActivity;
 import com.example.model.*;
 
-
 import android.content.Intent;
 import android.util.Log;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -181,10 +181,11 @@ public class API {
 			numero = obj.getString("numero");
 
 			// numero de login_predio é 'numero'
-			//numero = 1;
+			// numero = 1;
 
 			endereco = new Endereco(estado, cidade, bairro, rua, numero, cep);
-			predio = new Predio(nome, senha, telefone, email, endereco, idPredio);
+			predio = new Predio(nome, senha, telefone, email, endereco,
+					idPredio);
 
 			System.out.println(estado);
 
@@ -217,7 +218,7 @@ public class API {
 	 */
 	public static boolean cadastraMorador(int idPredio, String nome,
 			String senha, String apartamento, String login)
-					throws JSONException {
+			throws JSONException {
 
 		boolean cadastro;
 
@@ -300,7 +301,7 @@ public class API {
 	public static boolean cadastraPredio(String nome, String senha,
 			String telefone, String email, String estado, String cidade,
 			String bairro, String rua, String numero, int cep, String login)
-					throws JSONException {
+			throws JSONException {
 		boolean cadastro = false;
 
 		String url, response;
@@ -415,7 +416,7 @@ public class API {
 	 */
 	public static boolean atualizaMorador(int idPredio, int idMorador,
 			String nome, String senha, String apartamento, String login)
-					throws JSONException {
+			throws JSONException {
 
 		boolean cadastro;
 		String url, response;
@@ -434,14 +435,14 @@ public class API {
 		return cadastro;
 	}
 
-	public static ArrayList<Acude> Acudes() throws JSONException{
+	public static ArrayList<Acude> Acudes() throws JSONException {
 		ArrayList<Acude> Acudes = new ArrayList<Acude>();
 		String url, response;
 
 		url = DOMAIN + "/info_acudes";
 
 		response = GET(url);
-		//System.out.println(response);
+		// System.out.println(response);
 		JSONArray array = new JSONArray(response);
 
 		String nome, volume, data;
@@ -452,17 +453,17 @@ public class API {
 			data = array.getJSONObject(i).getString("data");
 			id = array.getJSONObject(i).getInt("id");
 
-			Acudes.add(new Acude(nome,volume,data,id));
+			Acudes.add(new Acude(nome, volume, data, id));
 
-
-			//System.out.println(i);
+			// System.out.println(i);
 		}
 
 		return Acudes;
 
 	}
 
-	public static boolean addAcudes(String nome, String volume, String data) throws JSONException{
+	public static boolean addAcudes(String nome, String volume, String data)
+			throws JSONException {
 		String url, response;
 		boolean result;
 
@@ -480,11 +481,13 @@ public class API {
 
 	}
 
-	public static boolean cadastraMedicao(int idPredio, String quantidade, String unidade, String data) throws JSONException{
+	public static boolean cadastraMedicao(int idPredio, String quantidade,
+			String unidade, String data) throws JSONException {
 		boolean result;
 		String url, response;
 
-		url = DOMAIN + "/cadastra_medicao/" + idPredio + "/" + quantidade + "/" + unidade + "/" + data;
+		url = DOMAIN + "/cadastra_medicao/" + idPredio + "/" + quantidade + "/"
+				+ unidade + "/" + data;
 
 		response = GET(url);
 
@@ -493,76 +496,78 @@ public class API {
 
 		result = obj.getBoolean("cadastra_medicao");
 
-		//System.out.println("medicao " + result);
-
+		// System.out.println("medicao " + result);
 
 		return result;
 	}
 
-	public static ArrayList<Medicao> getMedicoesPorPredio(int idPredio) throws JSONException{
+	public static ArrayList<Medicao> getMedicoesPorPredio(int idPredio)
+			throws JSONException {
 		ArrayList<Medicao> medicoes = new ArrayList<Medicao>();
 
-		String url,response;
+		String url, response;
 
 		url = DOMAIN + "/medicao/" + idPredio;
 
-		response  = GET(url);
+		response = GET(url);
 
 		JSONArray array = new JSONArray(response);
 
 		String unidade, quantidade, data;
 		for (int i = 0; i < array.length(); i++) {
 
-			//unidade = array.getJSONObject(i).getString("unidade");
+			// unidade = array.getJSONObject(i).getString("unidade");
 
 			quantidade = "" + array.getJSONObject(i).getDouble("quantidade");
 
 			data = array.getJSONObject(i).getString("data");
 
-			medicoes.add(new Medicao( Float.parseFloat(quantidade),data, infoPredio(idPredio)));
+			medicoes.add(new Medicao(Float.parseFloat(quantidade), data,
+					infoPredio(idPredio)));
 
-			//System.out.println("Medicoes: " + i);
+			// System.out.println("Medicoes: " + i);
 		}
-
-
 
 		return medicoes;
 	}
 
-	public static ArrayList<Medicao> getMedicoesPorData(int idPredio, String data_consulta) throws JSONException{
+	public static ArrayList<Medicao> getMedicoesPorData(int idPredio,
+			String data_consulta) throws JSONException {
 		ArrayList<Medicao> medicoes = new ArrayList<Medicao>();
 
-		String url,response;
+		String url, response;
 
 		url = DOMAIN + "/medicao/" + idPredio + "/" + data_consulta;
 
-		response  = GET(url);
+		response = GET(url);
 
 		JSONArray array = new JSONArray(response);
 
 		String unidade, quantidade, data;
 		for (int i = 0; i < array.length(); i++) {
 
-			//unidade = array.getJSONObject(i).getString("unidade");
+			// unidade = array.getJSONObject(i).getString("unidade");
 
 			quantidade = "" + array.getJSONObject(i).getDouble("quantidade");
 
 			data = array.getJSONObject(i).getString("data");
 
-			medicoes.add(new Medicao( Float.parseFloat(quantidade),data, infoPredio(idPredio)));
+			medicoes.add(new Medicao(Float.parseFloat(quantidade), data,
+					infoPredio(idPredio)));
 
-			//System.out.println("Medicoes: " + i);
+			// System.out.println("Medicoes: " + i);
 		}
-
 
 		return medicoes;
 	}
 
-	public static boolean cadastraNotificacoes(int idPredio, String texto, String data) throws JSONException{
+	public static boolean cadastraNotificacoes(int idPredio, String texto,
+			String data) throws JSONException {
 		boolean result;
 		String url, response;
 
-		url = DOMAIN + "/cadastra_notificacoes/" + idPredio + "/" + encodeString(texto) + "/" +  data;
+		url = DOMAIN + "/cadastra_notificacoes/" + idPredio + "/"
+				+ encodeString(texto) + "/" + data;
 
 		response = GET(url);
 
@@ -571,13 +576,13 @@ public class API {
 
 		result = obj.getBoolean("cadastra_notificacoes");
 
-		//System.out.println("Cadastra notificacoes " + result);
-
+		// System.out.println("Cadastra notificacoes " + result);
 
 		return result;
 	}
 
-	public static ArrayList<Notificacao> getNotificacoesPorPredio(int idPredio) throws JSONException{
+	public static ArrayList<Notificacao> getNotificacoesPorPredio(int idPredio)
+			throws JSONException {
 		ArrayList<Notificacao> notificacoes = new ArrayList<Notificacao>();
 		String url, response;
 
@@ -587,23 +592,23 @@ public class API {
 
 		JSONArray array = new JSONArray(response);
 
-		String data,texto;
+		String data, texto;
 		Predio predio = infoPredio(idPredio);
-		
+
 		for (int i = 0; i < array.length(); i++) {
 			data = array.getJSONObject(i).getString("data");
 			texto = decodeString(array.getJSONObject(i).getString("texto"));
 
 			notificacoes.add(new Notificacao(texto, data, predio));
-			//System.out.println("Notificacoes" + i);
+			// System.out.println("Notificacoes" + i);
 		}
-
 
 		Log.d("get notificacoes", "saiu de notificacoes " + array.length());
 		return notificacoes;
 	}
-	
-	public static ArrayList<Notificacao> getNotificacoesPorData(int idPredio, String data_consulta) throws JSONException{
+
+	public static ArrayList<Notificacao> getNotificacoesPorData(int idPredio,
+			String data_consulta) throws JSONException {
 		ArrayList<Notificacao> notificacoes = new ArrayList<Notificacao>();
 		String url, response;
 
@@ -613,21 +618,19 @@ public class API {
 
 		JSONArray array = new JSONArray(response);
 		Predio predio = infoPredio(idPredio);
-		String data,texto;
+		String data, texto;
 		for (int i = 0; i < array.length(); i++) {
 			data = array.getJSONObject(i).getString("data");
 			texto = array.getJSONObject(i).getString("texto");
 
-			notificacoes.add(new Notificacao(texto, data,predio));
-			//System.out.println("Notificacoes" + i);
+			notificacoes.add(new Notificacao(texto, data, predio));
+			// System.out.println("Notificacoes" + i);
 		}
-
-
 
 		return notificacoes;
 	}
 
-	public static ArrayList<Predio> listaPredios() throws JSONException{
+	public static ArrayList<Predio> listaPredios() throws JSONException {
 
 		ArrayList<Predio> predios = new ArrayList<Predio>();
 
@@ -641,13 +644,12 @@ public class API {
 		JSONObject obj = array.getJSONObject(0);
 		JSONArray listaPredios = obj.getJSONArray("lista_predios");
 
-
 		String senha, nome, bairro, cidade, rua, numero, telefone, estado, email;
 		int cep, id;
 
 		for (int i = 0; i < listaPredios.length(); i++) {
 			JSONObject predioObj = listaPredios.getJSONObject(i);
-			
+
 			senha = predioObj.getString("senha");
 			nome = predioObj.getString("nome");
 			bairro = predioObj.getString("bairro");
@@ -660,13 +662,64 @@ public class API {
 			cep = predioObj.getInt("cep");
 			id = predioObj.getInt("id_predio");
 
-			predios.add(new Predio(nome,senha, telefone, email,new Endereco(estado, cidade, bairro, rua, numero, cep), id));
+			predios.add(new Predio(nome, senha, telefone, email, new Endereco(
+					estado, cidade, bairro, rua, numero, cep), id));
 
 		}
 
-
 		return predios;
 
+	}
+
+	public static ArrayList<String> listaAcudes() throws JSONException {
+		ArrayList<String> nomes = new ArrayList<String>();
+		String url, response;
+
+		url = DOMAIN + "/lista_acudes";
+
+		response = GET(url);
+
+		JSONArray array = new JSONArray(response);
+		JSONObject obj;
+		for (int i = 0; i < array.length(); i++) {
+			obj = array.getJSONObject(i);
+			nomes.add(obj.getString("nome_acude"));
+		}
+
+		return nomes;
+	}
+
+	public static ArrayList<Medicao> info_acude_ano(String nome, String ano)
+			throws JSONException {
+		ArrayList<Medicao> acudes = new ArrayList<Medicao>();
+		String url, response;
+
+		url = DOMAIN + "/info_acude_ano/" + encodeString(nome) + "/" + ano;
+
+		response = GET(url);
+		JSONArray array = new JSONArray(response);
+		
+		JSONObject obj;
+		String volume, data;
+		for (int i = 0; i < array.length(); i++) {
+			obj = array.getJSONObject(i);
+
+			volume = obj.getString("volume");
+			data = obj.getString("data");
+
+			// string to data
+			Calendar cal = Calendar.getInstance();
+			try {
+				SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+				cal.setTime(sdf.parse(data));
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			acudes.add(new Medicao(Float.parseFloat(volume), cal));
+
+		}
+
+		return acudes;
 	}
 
 	/**
@@ -699,84 +752,80 @@ public class API {
 
 		return resultado;
 	}
-	
-	private static String encodeString(String texto){
+
+	private static String encodeString(String texto) {
 		String result;
-		
+
 		result = texto.replace(" ", "%20");
-		
-		return result;
-	}
-	
-	private static String decodeString(String texto){
-		String result;
-		
-		result = texto.replace("%20", " ");
-		
+
 		return result;
 	}
 
-	
-	private static Calendar ultimoDomingo(Calendar dia){
+	private static String decodeString(String texto) {
+		String result;
+
+		result = texto.replace("%20", " ");
+
+		return result;
+	}
+
+	private static Calendar ultimoDomingo(Calendar dia) {
 		Calendar domingo = (Calendar) dia.clone();
-		
-		while(true){
-			
-			if(domingo.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY){
+
+		while (true) {
+
+			if (domingo.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
 				break;
 			}
-			
+
 			domingo.roll(Calendar.DAY_OF_MONTH, false);
 		}
-		
-		
+
 		return domingo;
 	}
-	
-	private static ArrayList<String> diasDaUltimaSemana(Calendar dia){
-		//Calendar dia = Calendar.getInstance();
+
+	private static ArrayList<String> diasDaUltimaSemana(Calendar dia) {
+		// Calendar dia = Calendar.getInstance();
 		Calendar ultimoDomingo = ultimoDomingo(dia);
-		
+
 		ArrayList<String> dias = new ArrayList<String>();
 		String data = "";
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		
-		while(true){
+
+		while (true) {
 			data = sdf.format(ultimoDomingo.getTime()).toString();
 			System.out.println(data);
-			
+
 			dias.add(data);
-			
-			if(ultimoDomingo.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY){
+
+			if (ultimoDomingo.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) {
 				break;
 			}
-			
+
 			ultimoDomingo.roll(Calendar.DAY_OF_YEAR, false);
-			
+
 		}
-		
-		
+
 		return dias;
 	}
 
-	private static float somaValoresMedicoes(ArrayList<Medicao> medicoes){
+	private static float somaValoresMedicoes(ArrayList<Medicao> medicoes) {
 		float result = 0;
-		
+
 		for (Medicao medicao : medicoes) {
 			result += medicao.getValor();
 		}
-		
-		
-		return result;		
+
+		return result;
 	}
 
-	public static float resultadoMedicoesSemanaPassada(int idPredio){
+	public static float resultadoMedicoesSemanaPassada(int idPredio) {
 		float result = 0;
 		Calendar ultimoDomingo = ultimoDomingo(Calendar.getInstance());
 		ArrayList<String> diasDaSemanaPassada = diasDaUltimaSemana(ultimoDomingo);
-		
+
 		for (String dia : diasDaSemanaPassada) {
-			
+
 			try {
 				result += somaValoresMedicoes(getMedicoesPorData(idPredio, dia));
 			} catch (JSONException e) {
@@ -784,21 +833,23 @@ public class API {
 				e.printStackTrace();
 			}
 		}
-		
-		return result;	
+
+		return result;
 	}
 
-	public static float resultadoMedicoesSemanaTrasada(int idPredio){
+	public static float resultadoMedicoesSemanaTrasada(int idPredio) {
 		float result = 0;
 		Calendar ultimoDomingo = ultimoDomingo(Calendar.getInstance());
-		
-		ultimoDomingo.roll(Calendar.DAY_OF_YEAR, false); // Volta 1 dia pra pegar a semana trasada
+
+		ultimoDomingo.roll(Calendar.DAY_OF_YEAR, false); // Volta 1 dia pra
+															// pegar a semana
+															// trasada
 		Calendar domingoTrasado = ultimoDomingo(ultimoDomingo);
-		
+
 		ArrayList<String> diasDaSemanaPassada = diasDaUltimaSemana(domingoTrasado);
-		
+
 		for (String dia : diasDaSemanaPassada) {
-			
+
 			try {
 				result += somaValoresMedicoes(getMedicoesPorData(idPredio, dia));
 			} catch (JSONException e) {
@@ -806,9 +857,8 @@ public class API {
 				e.printStackTrace();
 			}
 		}
-		
-		return result;	
+
+		return result;
 	}
-	
-	
+
 }

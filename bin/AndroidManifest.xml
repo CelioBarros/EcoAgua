@@ -47,6 +47,8 @@
         </activity>
         <activity android:name=".grafico.AcudeVolumeActivity" >
         </activity>
+        <activity android:name=".grafico.AcudeVolumeAtualActivity" >
+        </activity>
     </application>
 
 </manifest>
