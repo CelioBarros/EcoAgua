@@ -6,10 +6,9 @@ import java.util.List;
 import java.util.Locale;
 
 import com.example.controller.API;
-import com.example.ecoagua.EstatisticasActivity;
 import com.example.ecoagua.R;
+import com.example.model.CalendarUtils;
 import com.example.model.Medicao;
-import com.example.model.Usuario;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
@@ -23,10 +22,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.Toast;
 
-public class Semana extends Activity {
+public class MesActivity extends Activity{
 	private Calendar dia;
 	private GraphView graph;
 	private EditText etData;
@@ -36,12 +33,12 @@ public class Semana extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_semana);
+		setContentView(R.layout.activity_mes);
 
 		dia = Calendar.getInstance();
 
-		graph = (GraphView) findViewById(R.id.graph_semana);
-		etData = (EditText) findViewById(R.id.ed_data_semana);
+		graph = (GraphView) findViewById(R.id.graph_mes);
+		etData = (EditText) findViewById(R.id.ed_data_mes);
 
 		criaGrafico();
 		setData();
@@ -54,9 +51,9 @@ public class Semana extends Activity {
 		int cor = Color.BLUE;
 		boolean drawDataPoints = true;
 		int raio = 8;
-		List<Medicao> medicoes = API.user.getMedicoesSemana(dia);
-		int numX = 7;
-		Context context = Semana.this;
+		List<Medicao> medicoes = API.user.getMedicoesMes(dia);
+		int numX = CalendarUtils.getQtdDiasMes(dia);
+		Context context = MesActivity.this;
 		boolean showTextOnPointClick = true;
 				 
 		series = serie.criaSerie(titulo, cor, drawDataPoints, raio, dia, medicoes, numX, context, showTextOnPointClick);
@@ -96,7 +93,7 @@ public class Semana extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				new DatePickerDialog(Semana.this, date, dia.get(Calendar.YEAR),
+				new DatePickerDialog(MesActivity.this, date, dia.get(Calendar.YEAR),
 						dia.get(Calendar.MONTH), dia.get(Calendar.DAY_OF_MONTH))
 						.show();
 			}

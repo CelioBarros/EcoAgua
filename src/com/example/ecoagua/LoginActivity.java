@@ -9,7 +9,7 @@ import org.json.JSONException;
 
 import com.example.controller.API;
 import com.example.ecoagua.R;
-import com.example.ecoagua.grafico.Semana;
+import com.example.ecoagua.grafico.SemanaActivity;
 import com.example.model.Morador;
 import com.example.model.Predio;
 import com.example.model.Ranking;
