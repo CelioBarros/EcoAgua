@@ -41,6 +41,7 @@
     <com.jjoe64.graphview.GraphView
         android:id="@+id/graph_semana"
         android:layout_width="match_parent"
-        android:layout_height="200dip" />
+        android:layout_height="200dip"
+        android:layout_margin="5dp" />
 
 </LinearLayout>

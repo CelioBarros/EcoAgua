@@ -56,7 +56,7 @@ public class MesActivity extends Activity{
 		Context context = MesActivity.this;
 		boolean showTextOnPointClick = true;
 				 
-		series = serie.criaSerie(titulo, cor, drawDataPoints, raio, dia, medicoes, numX, context, showTextOnPointClick);
+		series = serie.criaSerie(titulo, cor, drawDataPoints, raio, dia, medicoes, numX, context, showTextOnPointClick, false);
 		
 		
 		Grafico grafico = new Grafico();
@@ -67,9 +67,11 @@ public class MesActivity extends Activity{
 		boolean comLabels = false;
 		int numLabels = 7;
 		boolean soIntEmX = false;
+
+		String tituloX = "Dia";
+		String tituloY = "Consumo (L)";
 		
-		
-		grafico.criaGrafico(graph, series, legenda, comLabels, numLabels, soIntEmX, scroll);
+		grafico.criaGrafico(graph, series, legenda, comLabels, numLabels, soIntEmX, scroll, tituloX, tituloY);
 	}
 
 	//

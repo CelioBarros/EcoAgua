@@ -10,6 +10,7 @@ import org.json.JSONException;
 import com.example.controller.API;
 import com.example.ecoagua.R;
 import com.example.ecoagua.grafico.SemanaActivity;
+import com.example.model.Acude;
 import com.example.model.Morador;
 import com.example.model.Predio;
 import com.example.model.Ranking;
@@ -31,20 +32,25 @@ public class LoginActivity extends Activity{
 	private Button btnEntrar;
 	private EditText etLogin;
 	private EditText etSenha;
+	private View loading;
+	public static Acude acude;
 	
 	private void logar() {
 		btnEntrar.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
+				loading.setVisibility(View.VISIBLE);
 				String login = etLogin.getText().toString();
 				String senha = etSenha.getText().toString();
 				
 				try {
 					if(API.login(login, senha)){
-						setMedicoes();
-						setRanking();
-						setColocacao();
+						
+						//setMedicoes();
+						//setRanking();
+						//setColocacao();
+						setDadosAcude();
 						
 						Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 						startActivity(intent);
@@ -58,6 +64,11 @@ public class LoginActivity extends Activity{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				
+			}
+
+			private void setDadosAcude() {
+				
 				
 			}
 
@@ -129,6 +140,9 @@ public class LoginActivity extends Activity{
 		btnEntrar = (Button) findViewById(R.id.btn_entrar);
 		etLogin = (EditText) findViewById(R.id.et_login);
 		etSenha = (EditText) findViewById(R.id.et_senha);
+		loading = (View) findViewById(R.id.loginLoading);
+		
+		loading.setVisibility(View.INVISIBLE);
 		
 		cadastrar();
 

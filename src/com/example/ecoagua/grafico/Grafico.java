@@ -15,23 +15,31 @@ public class Grafico {
 
 	public GraphView criaGrafico(GraphView graph,
 			LineGraphSeries<DataPoint> serie, boolean legenda,
-			boolean comLabels, int numLabels, boolean soIntEmX, boolean scroll) {
+			boolean comLabels, int numLabels, boolean soIntEmX, boolean scroll, String tituloX, String tituloY) {
 		graph.removeAllSeries();
 		graph.addSeries(serie);
 
 		// parametros
 		setScrollAndZoom(graph, scroll);
-		setLegenda(graph, legenda);
+		setLegenda(graph, legenda,tituloX, tituloY);
 		setNumLabelsX(graph, numLabels, comLabels);
 		xSoInt(graph, soIntEmX);
 		return graph;
 	}
 
-	public void setLegenda(GraphView graph, boolean check) {
+	public void setLegenda(GraphView graph, boolean check, String tituloX, String tituloY) {
 		if (check) {
 
 			graph.getLegendRenderer().setVisible(true);
 			graph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.TOP);
+			graph.getGridLabelRenderer().setHorizontalAxisTitle(tituloX);
+			graph.getGridLabelRenderer().setVerticalAxisTitle(tituloY);
+
+			graph.getGridLabelRenderer().setVerticalAxisTitleTextSize(22f);
+			graph.getGridLabelRenderer().setHorizontalAxisTitleTextSize(40f);
+			
+			graph.getGridLabelRenderer().setVerticalAxisTitleColor(Color.YELLOW);
+			graph.getGridLabelRenderer().setHorizontalAxisTitleColor(Color.YELLOW);
 		}
 	}
 

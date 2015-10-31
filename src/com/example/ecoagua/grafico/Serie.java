@@ -38,14 +38,14 @@ public class Serie {
 	 */
 	public LineGraphSeries<DataPoint> criaSerie( String titulo, int cor,
 			boolean drawDataPoints, int raio, Calendar data,
-			List<Medicao> medicoes, int numX, Context context, boolean showTextOnPointClick) {
+			List<Medicao> medicoes, int numX, Context context, boolean showTextOnPointClick, boolean acude) {
 
 		// parametros
 		DataPoint[] pontos = criaDataPoints(numX, data, medicoes);
 		LineGraphSeries<DataPoint> serie = setSeries(pontos);
 		setPropriedadesSerie(serie, titulo, cor);
 		drawDataPoints(serie, drawDataPoints, raio);
-		showTextoOnClick(serie, context, data, showTextOnPointClick);
+		showTextoOnClick(serie, context, medicoes, showTextOnPointClick, acude);
 		return serie;
 	}
 
@@ -88,18 +88,23 @@ public class Serie {
 	}
 
 	public void showTextoOnClick(LineGraphSeries<DataPoint> serie,
-			final Context context, final Calendar data,
-			boolean show) {
+			final Context context, final List<Medicao> medicoes,
+			boolean show, final boolean acude) {
 		if (show) {
 			serie.setOnDataPointTapListener(new OnDataPointTapListener() {
 				@Override
 				public void onTap(Series series, DataPointInterface dataPoint) {
 					
-					 Calendar temp = data; temp.set(Calendar.DAY_OF_MONTH,
-					 (int)dataPoint.getX());
+					
+					 Calendar temp = medicoes.get((int)dataPoint.getX()-1).getData(); 
 					 
-					 Toast.makeText( context, "Consumo: " + dataPoint.getY() +
-					 " L"+ "\nData: " +
+					 String volume = "";
+					 if(acude){
+						 volume = "Volume: " + String.format("%.2f", dataPoint.getY()) + "%";
+					 }else{
+						volume= "Consumo: " + String.format("%.2f", dataPoint.getY()) + " L";
+					 }
+					 Toast.makeText( context,  volume + "\nData: " +
 					  CalendarUtils.getDataFormatadaSemHoras(temp) ,
 					  Toast.LENGTH_SHORT).show();
 				}

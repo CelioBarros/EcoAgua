@@ -35,5 +35,9 @@ public class CalendarUtils {
 	public static int getQtdDiasMes(Calendar data) {
 		return data.getActualMaximum(Calendar.DAY_OF_MONTH);
 	}
+	
+	public static int getYear(Calendar data) {
+		return Calendar.YEAR;
+	}
 
 }

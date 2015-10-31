@@ -1,6 +1,7 @@
 package com.example.ecoagua;
 
 import com.example.ecoagua.R;
+import com.example.ecoagua.grafico.AcudeVolumeActivity;
 import com.example.ecoagua.grafico.MesActivity;
 import com.example.ecoagua.grafico.SemanaActivity;
 
@@ -34,7 +35,7 @@ public class EstatisticasActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(EstatisticasActivity.this, MainActivity.class);
+				Intent intent = new Intent(EstatisticasActivity.this, AcudeVolumeActivity.class);
 				startActivity(intent);
 				
 			}
