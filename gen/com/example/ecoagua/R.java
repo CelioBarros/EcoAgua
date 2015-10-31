@@ -177,13 +177,14 @@ public final class R {
         /**  activity_estatisticas 
          */
         public static final int s_estatisticas=0x7f060020;
-        public static final int s_estatisticas_acude_volume=0x7f060024;
-        public static final int s_estatisticas_acude_volume_atual=0x7f060025;
+        public static final int s_estatisticas_acude_volume=0x7f060025;
+        public static final int s_estatisticas_acude_volume_atual=0x7f060026;
         public static final int s_estatisticas_gacude=0x7f060021;
-        public static final int s_estatisticas_mensal=0x7f060022;
-        public static final int s_estatisticas_previsao=0x7f060026;
-        public static final int s_estatisticas_semanal=0x7f060023;
-        public static final int s_estatisticas_tempo=0x7f060027;
+        public static final int s_estatisticas_gacude_atual=0x7f060022;
+        public static final int s_estatisticas_mensal=0x7f060023;
+        public static final int s_estatisticas_previsao=0x7f060027;
+        public static final int s_estatisticas_semanal=0x7f060024;
+        public static final int s_estatisticas_tempo=0x7f060028;
         public static final int s_morador_ap=0x7f06000d;
         public static final int s_morador_btn_cadastrar=0x7f06000e;
         /**  activity_cadastro_morador 

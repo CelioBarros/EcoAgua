@@ -48,7 +48,8 @@
     
     <!-- activity_estatisticas -->
     <string name="s_estatisticas">Gráficos do consumo de água</string>
-    <string name="s_estatisticas_gacude">Gráfico do açude de Boqueirão</string>
+    <string name="s_estatisticas_gacude">Gráfico do açude de Boqueirão (últimos anos)</string>
+    <string name="s_estatisticas_gacude_atual">Gráfico do açude de Boqueirão (ano atual)</string>
     <string name="s_estatisticas_mensal">Mensal</string>
     <string name="s_estatisticas_semanal">Semanal</string>
     <string name="s_estatisticas_acude_volume">Volume (%)</string>

@@ -12,7 +12,7 @@
         android:layout_marginBottom="40dp"
         android:layout_marginTop="30dp"
         android:gravity="center"
-        android:text="@string/s_estatisticas_gacude"
+        android:text="@string/s_estatisticas_gacude_atual"
         android:textSize="16sp" />
 
      <LinearLayout
