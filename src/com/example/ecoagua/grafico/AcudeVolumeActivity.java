@@ -47,7 +47,7 @@ public class AcudeVolumeActivity extends Activity {
 		temp.set(Calendar.YEAR, 2011);
 		*/
 		Float medidas[] = { 13.7f, 39.7f, 24.65f, 14.93f, 7.68f }; //dados de porcentagens pegos do tableau
-		String datas[] = {"31-12-2011", "31-12-2012", "31-12-2013", "31-12-2014", "31.12.2015"}; 
+		String datas[] = {"31-12-2011", "31-12-2012", "31-12-2013", "31-12-2014", "31-12-2015"}; 
 		
 		for (int i = 0; i < medidas.length; i++) {
 			Calendar cal = Calendar.getInstance();
