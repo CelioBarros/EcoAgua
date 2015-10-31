@@ -1,8 +1,8 @@
 package com.example.ecoagua;
 
 import com.example.ecoagua.R;
-import com.example.ecoagua.grafico.Mes;
-import com.example.ecoagua.grafico.Semana;
+import com.example.ecoagua.grafico.MesActivity;
+import com.example.ecoagua.grafico.SemanaActivity;
 
 import android.app.TabActivity;
 import android.content.Intent;
@@ -29,7 +29,7 @@ public class MainActivity extends TabActivity {
 
 	    mTabHost.addTab(mTabHost.newTabSpec("home").setIndicator("", getResources().getDrawable(R.drawable.home)).setContent(new Intent(this  ,PerfilActivity.class )));
 	    mTabHost.addTab(mTabHost.newTabSpec("ranking").setIndicator("", getResources().getDrawable(R.drawable.ranking)).setContent(new Intent(this , RankingActivity.class )));
-	    mTabHost.addTab(mTabHost.newTabSpec("estatisticas").setIndicator("", getResources().getDrawable(R.drawable.grafico)).setContent(new Intent(this , Mes.class )));
+	    mTabHost.addTab(mTabHost.newTabSpec("estatisticas").setIndicator("", getResources().getDrawable(R.drawable.grafico)).setContent(new Intent(this , EstatisticasActivity.class )));
 	    mTabHost.addTab(mTabHost.newTabSpec("notificacoes").setIndicator("", getResources().getDrawable(R.drawable.notificacoes)).setContent(new Intent(this , NotificacoesActivity.class )));
 	    mTabHost.setCurrentTab(0);
 	    

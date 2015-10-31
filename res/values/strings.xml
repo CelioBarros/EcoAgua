@@ -47,6 +47,11 @@
     <string name="s_notificacao">Notificacões</string>
     
     <!-- activity_estatisticas -->
-    <string name="s_estatisticas">Gráfico do consumo de água</string>
+    <string name="s_estatisticas">Gráficos do consumo de água</string>
+    <string name="s_estatisticas_gacude">Gráficos do açude de Boqueirão</string>
+    <string name="s_estatisticas_mensal">Mensal</string>
+    <string name="s_estatisticas_semanal">Semanal</string>
+    <string name="s_estatisticas_acude_volume">Volume</string>
+    <string name="s_estatisticas_previsao">Previsão</string>
     <string name="s_estatisticas_tempo">Data: </string>
 </resources>
