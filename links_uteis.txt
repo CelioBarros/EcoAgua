@@ -27,3 +27,7 @@ http://aguaeco-celiobarros.rhcloud.com/cadastra_notificacoes/<id_predio>/<texto>
 http://aguaeco-celiobarros.rhcloud.com/notificacoes/<id_predio>/<data>
 
 http://aguaeco-celiobarros.rhcloud.com/notificacoes/<id_predio>
+
+http://aguaeco-celiobarros.rhcloud.com/lista_acudes
+
+http://aguaeco-celiobarros.rhcloud.com/info_acude_ano/<acude>/<ano>
